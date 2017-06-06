@@ -99,7 +99,7 @@ def LoadData(fileName, start,end):
         reader = csv.reader(csvfile, delimiter=',')
         for row in itertools.islice(reader, start,end):
             output=np.longfloat(row[5])
-            input = [np.longfloat(x) for x in itertools.islice(row , 5,len(row) ) if x != '']    #len(row)
+            input = [np.longfloat(x) for x in itertools.islice(row , 5,len(row) ) if x != ''] 
             inputData.append(input)
             outputData.append(output)
     return inputData,outputData			
