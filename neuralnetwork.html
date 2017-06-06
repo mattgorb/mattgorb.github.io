@@ -6,7 +6,7 @@
   <!-- Basic Page Needs
   �������������������������������������������������� -->
   <meta charset="utf-8">
-  <title>Daily MLB Lineups</title>
+  <title>Artificial Neural Network</title>
   <meta name="description" content="">
   <meta name="author" content="">
 
@@ -77,7 +77,7 @@
               </ul>
             </div>
           </li>
-          <li class="navbar-item"><a class="navbar-link" href="#examples">asdfas</a></li>
+          <li class="navbar-item"><a class="navbar-link" href="neuralnetwork.html">Artificial Neural Network</a></li>
         </ul>
       </div>
     </nav>
@@ -85,8 +85,8 @@
  
           <!-- Why use-->
           <div class="docs-section" style="padding-top: 6rem;padding-bottom: 3rem;" id="intro">
-              <h3>Daily MLB lineups API</h3>
-              <p>An isomorphic web application written with Node and Reactjs.  Basic UI renders a sample API JSON response.  API parses RotoWire MLB daily lineups page (rotowire.com/baseball/daily_lineups.htm) and returns data in JSON format.  The application uses MongoDB and JSONWebToken for user authentication, along with several libraries for XML parsing for the API call. </br></br>Baseball lineups are difficult to predict and hard to keep up with manually.  This API offers the option of programmatically hooking in to the best data source for lineups (rotowire.com).  I created this API to hook into learning algorithms for generating fantasy baseball lineups. </p>
+              <h3>Artificial Neural Network</h3>
+              <p>The following code is a three layer neural network written in Python and NumPy.  This was my first shot at programming a neural network, so there are likely a ton of issues with it. I wanted to build it from scratch so I could attempt to understand and conceptualize the math involved.  </br></br></p>
 
 
 		<div id="json">
@@ -96,10 +96,50 @@
 	      
 		<div class="docs-section" style={intro} id="runScript">
 		<h5 style={{marginBottom: 0}} >Run Script:</h5>
-		<pre><code>Build the bundle file and run babel-node to start the node server:
+		<pre><code> def Train(self):
+        global weights0,weights1,layer1_deltaPrev,layer2_deltaPrev
+        for iter in xrange(self.trainingIterations):
+	     
+            layer0 = self.TrainingIn
+	    if(self.shuffle):
+	    	np.random.shuffle(layer0)
 
-NODE_ENV=production node_modules/.bin/webpack -p
-NODE_ENV=production node_modules/.bin/babel-node --presets 'react,es2015' src/server.js
+            layer1 = self.nonlin(np.dot(layer0,self.weights0))
+
+            if(self.biasLayer1TF):
+                self.biaslayer1 = np.ones(layer1.shape[0])
+                layer1=np.column_stack((layer1,self.biaslayer1))
+            if(self.dropout):
+                layer1 *= np.random.binomial([np.ones((layer1.shape[0],layer1.shape[1]))],1-self.dropoutPercent)[0] * (1.0/(1-self.dropoutPercent))
+            
+            layer2 = self.nonlin(np.dot(layer1,self.weights1))
+            
+            if(self.miniBtch_StochastGradTrain):
+                self.layer1_delta,self.layer2_delta=self.MiniBatchOrStochasticGradientDescent()
+                self.layer2_deltaPrev=self.layer2_delta
+                self.layer1_deltaPrev=self.layer1_delta
+            else:
+
+                layer2_error = self.TrainingOut - layer2
+                self.layer2_delta = layer2_error*self.nonlin(layer2,deriv=True)*self.learningRate+self.momentum*self.layer2_deltaPrev
+                self.layer2_deltaPrev=self.layer2_delta
+		
+                layer1_error = self.layer2_delta.dot(self.weights1.T)
+                self.layer1_delta = layer1_error * self.nonlin(layer1,deriv=True)*self.learningRate+self.momentum*self.layer1_deltaPrev
+                self.layer1_deltaPrev=self.layer1_delta
+    
+            self.weights1 += layer1.T.dot(self.layer2_delta)
+            if(self.biasLayer1TF):
+                self.weights0 += layer0.T.dot(self.layer1_delta.T[:-1].T)
+            else:
+                self.weights0 += layer0.T.dot(self.layer1_delta)
+            
+    
+            if (iter% 20) == 0:
+                self.CalculateValidationError()
+		
+                if(self.minimumValidationError<0.01):
+                    break
 		</code></pre>
 
 
