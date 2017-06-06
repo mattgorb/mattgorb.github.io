@@ -88,6 +88,24 @@
               <h3>Artificial Neural Network</h3>
               <p>The following code is a three layer neural network written in Python and NumPy.  This was my first shot at programming a neural network, so there are likely a ton of issues with it. I wanted to build it from scratch so I could attempt to understand and conceptualize the math involved.  </br></br></p>
 
+	  <div class="docs-section" style={intro} id="client">
+                  <h5 style={{marginBottom: 0}} >Data</h5>
+		  <p>https://github.com/mattgorb/MLBFantasyNeuralNet/blob/master/MLBData.py</p>
+		  	<pre><code>
+			def LoadData(fileName, start,end):
+    inputData=[]
+    outputData=[]    
+    with open(fileName, 'rb') as csvfile:
+        reader = csv.reader(csvfile, delimiter=',')
+        for row in itertools.islice(reader, start,end):
+            output=np.longfloat(row[5])
+            input = [np.longfloat(x) for x in itertools.islice(row , 5,len(row) ) if x != '']    #len(row)
+            inputData.append(input)
+            outputData.append(output)
+    return inputData,outputData</code></pre>
+              </div>
+	
+	
               <div class="docs-section" style={intro} id="client">
                   <h5 style={{marginBottom: 0}} >Main.py</h5>
 		      <p>We'll start in main with the following code:</p>
