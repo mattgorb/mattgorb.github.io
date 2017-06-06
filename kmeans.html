@@ -6,7 +6,7 @@
   <!-- Basic Page Needs
   �������������������������������������������������� -->
   <meta charset="utf-8">
-  <title>Kth means</title>
+  <title>K means clustering</title>
   <meta name="description" content="">
   <meta name="author" content="">
 
@@ -85,9 +85,8 @@
  
           <!-- Why use-->
           <div class="docs-section" style="padding-top: 6rem;padding-bottom: 3rem;" id="intro">
-              <h3>K means?</h3>
-              <h2>Clustering!</h2>
-              <p>The following code is a three layer neural network written in Python and NumPy.  This was my first shot at programming a neural network, so there are likely a ton of issues with it. I wanted to build it from scratch so I could attempt to understand and conceptualize the math involved.  </br></br></p>
+              <h3>K means clustering</h3>
+              <p>Another raw implementation of a fundamental learning algorithm, k means clustering.  </br></br></p>
 
 	  <div class="docs-section" style={intro} id="client">
 		  <p>Data</p>
@@ -120,14 +119,6 @@ def LoadData(fileName, start,end):
 		      <p>We'll start in main with the following code:</p>
 		      
 		  	<pre><code>
-#NetworkParameters examples
-"""hiddenDim=5 dropout=True dropoutPercent=.1 learningRate=.01 momentum=0.01 
-miniBtch_StochastGradTrain=True miniBtch_StochastGradTrain_Split=30 #for stochastic training set miniBtch_StochastGradTrain="Stochastic"
-addInputBias=True biasLayer1TF=True trainingIterations=500 NFoldCrossValidation=True 
-N=5 If you want Nfold By dates set N='Dates'
-"""
-
-
 Run({"hiddenDim":2,
 "learningRate":.005,
 "miniBtch_StochastGradTrain":"Stochastic","miniBtch_StochastGradTrain_Split":250,
@@ -138,9 +129,7 @@ Run({"hiddenDim":2,
 "NFoldCrossValidation":False,#"N":'Dates',
 "N":5,
 "shuffle":True
-}
-)	
-			
+})				
 			</code></pre>
 		       <p>These are all the network parameters I've built in.  They are all fundamental concepts of neural nets.  </p>
 		      <p></p>
