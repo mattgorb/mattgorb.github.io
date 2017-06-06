@@ -1,0 +1,235 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <!-- Basic Page Needs
+  �������������������������������������������������� -->
+  <meta charset="utf-8">
+  <title>Kth means</title>
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <!-- Mobile Specific Metas
+  �������������������������������������������������� -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- FONT
+  �������������������������������������������������� -->
+ <link href='https://fonts.googleapis.com/css?family=Raleway:400,300,600'  rel='stylesheet' type='text/css'>
+
+  <!-- CSS
+  �������������������������������������������������� -->
+  <link rel="stylesheet" href="css/normalize.css">
+  <link rel="stylesheet" href="css/skeleton.css">
+  <link rel="stylesheet" href="css/custom.css">
+
+  <!-- Scripts
+  �������������������������������������������������� -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+  <script src="https://google-code-prettify.googlecode.com/svn/loader/run_prettify.js"></script>
+  <script src="js/site.js"></script>
+
+  <!-- Favicon
+  �������������������������������������������������� -->
+  <link rel="icon" type="image/png" href="dist/images/favicon.png">
+
+
+
+
+
+<style>
+
+</style>
+
+
+
+
+
+
+</head>
+
+<body class="code-snippets-visible">
+
+  <!-- Primary Page Layout
+  �������������������������������������������������� -->
+  <div class="container">
+
+
+    <div class="navbar-spacer"></div>
+   <nav class="navbar">
+      <div class="container">
+        <ul class="navbar-list">
+          <li class="navbar-item"><a class="navbar-link" href="#intro">Home</a></li>
+          <li class="navbar-item">
+            <a class="navbar-link" href="#" data-popover="#codeNavPopover">MLB API</a>
+            <div id="codeNavPopover" class="popover">
+              <ul class="popover-list">
+                <li class="popover-item">
+                  <a class="popover-link" href="#intro">Intro</a>
+                </li>
+                <li class="popover-item">
+                  <a class="popover-link" href="#json">JSON Response</a>
+                </li>
+                <li class="popover-item">
+                  <a class="popover-link" href="#client">Node Client</a>
+                </li>
+              </ul>
+            </div>
+          </li>
+          <li class="navbar-item"><a class="navbar-link" href="neuralnetwork.html">Artificial Neural Network</a></li>
+        </ul>
+      </div>
+    </nav>
+
+ 
+          <!-- Why use-->
+          <div class="docs-section" style="padding-top: 6rem;padding-bottom: 3rem;" id="intro">
+              <h3>K means?</h3>
+              <h2>Clustering!</h2>
+              <p>The following code is a three layer neural network written in Python and NumPy.  This was my first shot at programming a neural network, so there are likely a ton of issues with it. I wanted to build it from scratch so I could attempt to understand and conceptualize the math involved.  </br></br></p>
+
+	  <div class="docs-section" style={intro} id="client">
+		  <p>Data</p>
+		  <p>https://github.com/mattgorb/MLBFantasyNeuralNet/blob/master/MLBData.py </br></p>
+		  <p>Note that the input data should already be normalized.  For my particular use case I used Min-Max Normalization, or scaling your data between [0,1].  The normalization code isn't included in this project since it was written in C#.  </p>
+<p>Links on data normalization: https://stats.stackexchange.com/questions/7757/data-normalization-and-standardization-in-neural-networks
+https://kratzert.github.io/2016/02/12/understanding-the-gradient-flow-through-the-batch-normalization-layer.html
+</p>		 
+<pre><code>
+#Basic, stripped down data load from a CSV file to two NumPy arrays
+def LoadData(fileName, start,end):
+    inputData=[] #python array
+    outputData=[]    
+    with open(fileName, 'rb') as csvfile: 
+        reader = csv.reader(csvfile, delimiter=',')
+        for row in itertools.islice(reader, start,end): #itertools is a python iterator tool
+            output=np.longfloat(row[5]) #output is the fifth index in each row
+	    #create a numpy long float array for each row from the sixth index to the last (len(row)) index 
+            input = [np.longfloat(x) for x in itertools.islice(row , 6,len(row) ) if x != ''] 
+	    #add each row to the python array
+            inputData.append(input)
+            outputData.append(output)
+    return inputData,outputData			
+			</code></pre>
+              </div>
+	
+	
+              <div class="docs-section" style={intro} id="client">
+                  <h5 style={{marginBottom: 0}} >Main.py</h5>
+		      <p>We'll start in main with the following code:</p>
+		      
+		  	<pre><code>
+#NetworkParameters examples
+"""hiddenDim=5 dropout=True dropoutPercent=.1 learningRate=.01 momentum=0.01 
+miniBtch_StochastGradTrain=True miniBtch_StochastGradTrain_Split=30 #for stochastic training set miniBtch_StochastGradTrain="Stochastic"
+addInputBias=True biasLayer1TF=True trainingIterations=500 NFoldCrossValidation=True 
+N=5 If you want Nfold By dates set N='Dates'
+"""
+
+
+Run({"hiddenDim":2,
+"learningRate":.005,
+"miniBtch_StochastGradTrain":"Stochastic","miniBtch_StochastGradTrain_Split":250,
+"trainingIterations":5000,
+"momentum":.1,
+"dropout":True,"dropoutPercent":0.65,
+"biasLayer1TF":True,"addInputBias":True,
+"NFoldCrossValidation":False,#"N":'Dates',
+"N":5,
+"shuffle":True
+}
+)	
+			
+			</code></pre>
+		       <p>These are all the network parameters I've built in.  They are all fundamental concepts of neural nets.  </p>
+		      <p></p>
+		      <p></p>
+		      <p></p>
+		      <p>trainingIterations: >1.  </p>
+		      <p></p>
+		      <p>biasLayer1TF: True or False. addInputBias: True or False  </p>
+		      <p></p>
+		      <p></p>
+		      <p>Shuffle:  True or False.  Randomly rearrange the data rows so that the network is fed new combinations of data on each iteration. </p>
+              </div>
+			                    <div class="docs-section" style={intro} id="client">
+                  <h5 style={{marginBottom: 0}} >Sample NodeJs Client:</h5>
+		  	<pre><code></code></pre>
+              </div>
+	
+	
+	
+	
+		<div class="docs-section" style={intro} id="runScript">
+		<h5 style={{marginBottom: 0}} >Run Script:</h5>
+		<pre><code> def Train(self):
+        global weights0,weights1,layer1_deltaPrev,layer2_deltaPrev
+        for iter in xrange(self.trainingIterations):
+	     
+            layer0 = self.TrainingIn
+	    if(self.shuffle):
+	    	np.random.shuffle(layer0)
+
+            layer1 = self.nonlin(np.dot(layer0,self.weights0))
+
+            if(self.biasLayer1TF):
+                self.biaslayer1 = np.ones(layer1.shape[0])
+                layer1=np.column_stack((layer1,self.biaslayer1))
+            if(self.dropout):
+                layer1 *= np.random.binomial([np.ones((layer1.shape[0],layer1.shape[1]))],1-self.dropoutPercent)[0] * (1.0/(1-self.dropoutPercent))
+            
+            layer2 = self.nonlin(np.dot(layer1,self.weights1))
+            
+            if(self.miniBtch_StochastGradTrain):
+                self.layer1_delta,self.layer2_delta=self.MiniBatchOrStochasticGradientDescent()
+                self.layer2_deltaPrev=self.layer2_delta
+                self.layer1_deltaPrev=self.layer1_delta
+            else:
+
+                layer2_error = self.TrainingOut - layer2
+                self.layer2_delta = layer2_error*self.nonlin(layer2,deriv=True)*self.learningRate+self.momentum*self.layer2_deltaPrev
+                self.layer2_deltaPrev=self.layer2_delta
+		
+                layer1_error = self.layer2_delta.dot(self.weights1.T)
+                self.layer1_delta = layer1_error * self.nonlin(layer1,deriv=True)*self.learningRate+self.momentum*self.layer1_deltaPrev
+                self.layer1_deltaPrev=self.layer1_delta
+    
+            self.weights1 += layer1.T.dot(self.layer2_delta)
+            if(self.biasLayer1TF):
+                self.weights0 += layer0.T.dot(self.layer1_delta.T[:-1].T)
+            else:
+                self.weights0 += layer0.T.dot(self.layer1_delta)
+            
+    
+            if (iter% 20) == 0:
+                self.CalculateValidationError()
+		
+                if(self.minimumValidationError<0.01):
+                    break
+		</code></pre>
+
+
+
+
+
+
+
+
+
+              <div class="docs-section" style={intro} id="client">
+                  <h5 style={{marginBottom: 0}} >Sample NodeJs Client:</h5>
+		  	<pre><code></code></pre>
+              </div>
+
+
+
+
+
+
+
+
+<!-- End Document
+  �������������������������������������������������� -->
+</body>
+</html>
