@@ -89,17 +89,24 @@
               <p>The following code is a three layer neural network written in Python and NumPy.  This was my first shot at programming a neural network, so there are likely a ton of issues with it. I wanted to build it from scratch so I could attempt to understand and conceptualize the math involved.  </br></br></p>
 
 	  <div class="docs-section" style={intro} id="client">
-                  <h5 style={{marginBottom: 0}} >Data:  github.com/mattgorb/MLBFantasyNeuralNet/blob/master/MLBData.py</h5>
-		  <p>https://github.com/mattgorb/MLBFantasyNeuralNet/blob/master/MLBData.py</p>
-		  	<pre><code>
+		  <p>Data</p>
+		  <p>https://github.com/mattgorb/MLBFantasyNeuralNet/blob/master/MLBData.py </br></p>
+		  <p>Note that the input data should already be normalized.  For my particular use case I used Min-Max Normalization, or scaling your data between [0,1].  The normalization code isn't included in this project since it was written in C#.  </p>
+<p>Links on data normalization: https://stats.stackexchange.com/questions/7757/data-normalization-and-standardization-in-neural-networks
+https://kratzert.github.io/2016/02/12/understanding-the-gradient-flow-through-the-batch-normalization-layer.html
+</p>		 
+<pre><code>
+#Basic, stripped down data load from a CSV file to two NumPy arrays
 def LoadData(fileName, start,end):
-    inputData=[]
+    inputData=[] #python array
     outputData=[]    
-    with open(fileName, 'rb') as csvfile:
+    with open(fileName, 'rb') as csvfile: 
         reader = csv.reader(csvfile, delimiter=',')
-        for row in itertools.islice(reader, start,end):
-            output=np.longfloat(row[5])
-            input = [np.longfloat(x) for x in itertools.islice(row , 5,len(row) ) if x != ''] 
+        for row in itertools.islice(reader, start,end): #itertools is a python iterator tool
+            output=np.longfloat(row[5]) #output is the fifth index in each row
+	    #create a numpy long float array for each row from the sixth index to the last (len(row)) index 
+            input = [np.longfloat(x) for x in itertools.islice(row , 6,len(row) ) if x != ''] 
+	    #add each row to the python array
             inputData.append(input)
             outputData.append(output)
     return inputData,outputData			
