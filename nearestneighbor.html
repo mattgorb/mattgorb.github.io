@@ -179,7 +179,7 @@ Average points min=26.555 (Serge Ibaka)</br>  Paul George's place average points
 (36.05-26.555)/(58.4-26.555)=0.298</br>
 This is a very basic standardization technique, but it will work for this example.  Extreme outliers can greatly skew this computation so it is not ideal much of the time.  
 </p>
-<h5>Example C#</h5>
+<h5>C# Example</h5>
 <p>
 Say we have a list called "tonight" of players playing tonight.  We do not know how many points they will score.  We can compute another list 
 	titled "previous" of players who played on a previous night.  We know how many points players on previous nights scored.  We also have 
@@ -191,7 +191,7 @@ Dictionary<string, List<double>> player_Alldistances = new Dictionary<string, Li
 foreach(player p in tonight){
     List<double> distances = new List<double>();
     foreach(player p2 in previous){
-           distances.Add(calculateDistance(p, p2);
+           distances.Add(calculateDistance(p, p2));
     }
     player_Alldistances.Add(p.Name, distances);          
 }
