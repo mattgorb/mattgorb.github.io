@@ -175,7 +175,7 @@ square_root((36.05-34.5947)^2 + (52.6875-61.93)^2+(185.019-204.37)^2) </br> You 
 
 
 
-<div><h5>Standardize data</h5><p>The biggest issue with this computation is the data isn't standardized.  For example the distance between point variance and point average is likely going to be a lot higher, causing variance to have a lot higher weight in the distance computations.  Looking at the Kristaps Porzingis vs Paul George example, the difference between average points (36.05-34.5947)=1.4553 and average variance (52.6875-61.93)=-9.2425 is a lot further off, especially after you square each number in the Euclidean formula.  <pre><code>		
+<div><h5>Standardize data</h5><p>The biggest issue with this computation is the data isn't standardized.  For example the distance between point variance and point average is likely going to be a lot higher, causing variance to have a lot higher weight in the distance computation.  Looking at the Kristaps Porzingis vs Paul George example, the difference between average points (36.05-34.5947)=1.4553 and average variance (52.6875-61.93)=-9.2425 is a lot further off, especially after you square each number in the Euclidean formula.  This will lead to variance having a lot higher influence in the overall formula.  </br></br> To counter this, we can standardize the variables between 0 and 1: <img src="mlb pics/knn.png" width="100%" height="5%"/> <pre><code>		
 			</code></pre></p></div>
 
 
