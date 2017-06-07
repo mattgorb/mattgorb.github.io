@@ -225,7 +225,7 @@ foreach(KeyValuePair<string, List<double>> entry in player_Alldistances)
     int twoPercent = entry.Value.Count * .02;
     entry.Value=entry.Value.OrderByAscending(x => x).ToList();
     double total = 0;
-    for(int i = 0;i<twoPercent;i++){
+    for(int i = 0;i(less than)twoPercent;i++){
         total+=entry.Value.ElementAt(i);
     }
     double average = total / twoPercent;
