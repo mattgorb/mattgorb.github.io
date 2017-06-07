@@ -168,121 +168,19 @@
 		 <h3>Distance</h3>
               <div><img src="mlb pics/distances.png" width="35%" height="35%"/></div>
 		 <p>For this example I'm going to use Euclidean distance.  To compute the distance between Paul George and Kristaps Porzingis we would do:</br>
-square_root((36.05-34.5947)^2 + (52.6875-61.93)^2+(185.019-204.37)^2) </br> You would repeat this computation for all rows of data, and the nearest K neighbors would be the K players with the shortest Euclidean distance to Paul George.</p>
-	
+square_root((36.05-34.5947)^2 + (52.6875-61.93)^2+(185.019-204.37)^2) </br> You would repeat this computation for all rows of data (i.e. Paul George distance to Anthony Davis, Paul George distance to DeMarcus Cousins, etc.) , and the nearest K neighbors would be the K players with the smallest Euclidean distance to Paul George.</p>
+
+
+
+
+
+
+<div><h5>Standardize data</h5><p>The biggest issue with this computation is the data isn't standardized.  For example the distance between point variance and point average is likely going to be a lot higher, causing variance to have a lot higher weight in the distance computations.  Looking at the Kristaps Porzingis vs Paul George example, the difference between average points (36.05-34.5947)=1.4553 and average variance (52.6875-61.93)=-9.2425 is a lot further off, especially after you square each number in the Euclidean formula.  <pre><code>		
+			</code></pre></p></div>
+
+
+
 	  <div class="docs-section" style={intro} id="client">
-		  <p>Data</p>
-		  <p>https://github.com/mattgorb/MLBFantasyNeuralNet/blob/master/MLBData.py </br></p>
-		  <p>Note that the input data should already be normalized.  For my particular use case I used Min-Max Normalization, or scaling your data between [0,1].  The normalization code isn't included in this project since it was written in C#.  </p>
-<p>Links on data normalization: https://stats.stackexchange.com/questions/7757/data-normalization-and-standardization-in-neural-networks
-https://kratzert.github.io/2016/02/12/understanding-the-gradient-flow-through-the-batch-normalization-layer.html
-</p>		 
-<pre><code>
-#Basic, stripped down data load from a CSV file to two NumPy arrays
-def LoadData(fileName, start,end):
-    inputData=[] #python array
-    outputData=[]    
-    with open(fileName, 'rb') as csvfile: 
-        reader = csv.reader(csvfile, delimiter=',')
-        for row in itertools.islice(reader, start,end): #itertools is a python iterator tool
-            output=np.longfloat(row[5]) #output is the fifth index in each row
-	    #create a numpy long float array for each row from the sixth index to the last (len(row)) index 
-            input = [np.longfloat(x) for x in itertools.islice(row , 6,len(row) ) if x != ''] 
-	    #add each row to the python array
-            inputData.append(input)
-            outputData.append(output)
-    return inputData,outputData			
-			</code></pre>
-              </div>
-	
-	
-              <div class="docs-section" style={intro} id="client">
-                  <h5 style={{marginBottom: 0}} >Main.py</h5>
-		      <p>We'll start in main with the following code:</p>
-		      
-		  	<pre><code>
-Run({"hiddenDim":2,
-"learningRate":.005,
-"miniBtch_StochastGradTrain":"Stochastic","miniBtch_StochastGradTrain_Split":250,
-"trainingIterations":5000,
-"momentum":.1,
-"dropout":True,"dropoutPercent":0.65,
-"biasLayer1TF":True,"addInputBias":True,
-"NFoldCrossValidation":False,#"N":'Dates',
-"N":5,
-"shuffle":True
-})				
-			</code></pre>
-		       <p>These are all the network parameters I've built in.  They are all fundamental concepts of neural nets.  </p>
-		      <p></p>
-		      <p></p>
-		      <p></p>
-		      <p>trainingIterations: >1.  </p>
-		      <p></p>
-		      <p>biasLayer1TF: True or False. addInputBias: True or False  </p>
-		      <p></p>
-		      <p></p>
-		      <p>Shuffle:  True or False.  Randomly rearrange the data rows so that the network is fed new combinations of data on each iteration. </p>
-              </div>
-			                    <div class="docs-section" style={intro} id="client">
-                  <h5 style={{marginBottom: 0}} >Sample NodeJs Client:</h5>
-		  	<pre><code></code></pre>
-              </div>
-	
-	
-	
-	
-		<div class="docs-section" style={intro} id="runScript">
-		<h5 style={{marginBottom: 0}} >Run Script:</h5>
-		<pre><code> def Train(self):
-        global weights0,weights1,layer1_deltaPrev,layer2_deltaPrev
-        for iter in xrange(self.trainingIterations):
-	     
-            layer0 = self.TrainingIn
-	    if(self.shuffle):
-	    	np.random.shuffle(layer0)
-
-            layer1 = self.nonlin(np.dot(layer0,self.weights0))
-
-            if(self.biasLayer1TF):
-                self.biaslayer1 = np.ones(layer1.shape[0])
-                layer1=np.column_stack((layer1,self.biaslayer1))
-            if(self.dropout):
-                layer1 *= np.random.binomial([np.ones((layer1.shape[0],layer1.shape[1]))],1-self.dropoutPercent)[0] * (1.0/(1-self.dropoutPercent))
-            
-            layer2 = self.nonlin(np.dot(layer1,self.weights1))
-            
-            if(self.miniBtch_StochastGradTrain):
-                self.layer1_delta,self.layer2_delta=self.MiniBatchOrStochasticGradientDescent()
-                self.layer2_deltaPrev=self.layer2_delta
-                self.layer1_deltaPrev=self.layer1_delta
-            else:
-
-                layer2_error = self.TrainingOut - layer2
-                self.layer2_delta = layer2_error*self.nonlin(layer2,deriv=True)*self.learningRate+self.momentum*self.layer2_deltaPrev
-                self.layer2_deltaPrev=self.layer2_delta
-		
-                layer1_error = self.layer2_delta.dot(self.weights1.T)
-                self.layer1_delta = layer1_error * self.nonlin(layer1,deriv=True)*self.learningRate+self.momentum*self.layer1_deltaPrev
-                self.layer1_deltaPrev=self.layer1_delta
-    
-            self.weights1 += layer1.T.dot(self.layer2_delta)
-            if(self.biasLayer1TF):
-                self.weights0 += layer0.T.dot(self.layer1_delta.T[:-1].T)
-            else:
-                self.weights0 += layer0.T.dot(self.layer1_delta)
-            
-    
-            if (iter% 20) == 0:
-                self.CalculateValidationError()
-		
-                if(self.minimumValidationError<0.01):
-                    break
-		</code></pre>
-
-
-
-
 
 
 
