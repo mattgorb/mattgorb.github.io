@@ -173,7 +173,45 @@ square_root((36.05-34.5947)^2 + (52.6875-61.93)^2+(185.019-204.37)^2) </br> You 
 
 
 <div><h5>Standardize data</h5><p>The biggest issue with this computation is the data isn't standardized.  For example the distance between point variance and point average is likely going to be a lot higher, causing variance to have a lot higher weight in the distance computation.  Looking at the Kristaps Porzingis vs Paul George example, the difference between average points (36.05-34.5947)=1.4553 and average variance (52.6875-61.93)=-9.2425 is a lot further off, especially after you square each number in the Euclidean formula.  This will lead to variance having a lot higher influence in the overall formula.  </br></br> To counter this, we can standardize the variables between 0 and 1:</br> 
-<img src="mlb pics/distancecomputation.png" width="20%" height="20%"/> <pre><code>		
+<img src="mlb pics/distancecomputation.png" width="20%" height="20%"/></br>Where X is a given variable for a player, and Min and Max are the minimum and maximum amounts of that particular variable within the dataset.  </br>Example:
+</br>Average points max=58.4 (Russell Westbrook)</br>
+Average points min=26.555 (Serge Ibaka)</br>  Paul George's place average points in this standardization computation would be</br>
+(36.05-26.555)/(58.4-26.555)=0.298</br>
+This is a very basic standardization technique, but it will work for this example.  Extreme outliers can greatly skew this computation so it is not ideal much of the time.  
+</p>
+<h5>Example C#</h5>
+<p>
+Say we have a list tonight=List<player> playing tonight.  We do not know how many points they will score.  We can compute another list of 
+	previous nights previous=List<player>  of players who played on previous night.  We know how many points they scored.  We also have 
+	average, variance, and opponent average for each player in both lists.  To get the neareset neighbors we can do the following: 
+
+</p>
+<pre><code>
+Dictionary<string, List<double>> player_Alldistances = new Dictionary<string, List<double>>();
+foreach(player p in tonight){
+    List<double> distances = new List<double>();
+    foreach(player p2 in previous){
+           distances.Add(calculateDistance(p, p2);
+    }
+    player_Alldistances.Add(p.Name, distances);          
+}
+public static double calculateDistance(player p, player p2)
+{
+    double mean = Math.Pow((p.meanPoints - meanMin) / (meanMax - meanMin) -
+        (p2.meanPoints - meanMin) / (meanMax - meanMin), 2);
+
+    double variationPoints = Math.Pow((p.variancePoints - variancePointsMin) / (variancePointsMax - variancePointsMin) -
+        (p2.deviationPoints - variancePointsMin) / (variancePointsMax - variancePointsMin), 2);
+
+    double opptTotalPointsAverage = Math.Pow((p.OpptTotalPointsAverage - OpptTotalPointsAverageMin) / (OpptTotalPointsAverageMax - OpptTotalPointsAverageMin) -
+        (p2.OpptTotalPointsAverage - OpptTotalPointsAverageMin) / (OpptTotalPointsAverageMax - OpptTotalPointsAverageMin), 2);
+
+    double distsum = mean + variationPoints + opptTotalPointsAverage;
+    double distance= System.Math.Sqrt(Math.Abs(distance));
+
+    return distance;
+}
+
 			</code></pre></p></div>
 
 
