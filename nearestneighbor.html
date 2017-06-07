@@ -183,7 +183,7 @@ This is a very basic standardization technique, but it will work for this exampl
 <p>
 Say we have a list called "tonight" of players playing tonight.  We do not know how many points they will score.  We can compute another list 
 	titled "previous" of players who played on a previous night.  We know how many points players on previous nights scored.  We also have 
-	average, variance, and opponent average for each player in both lists.  To get the neareset neighbors we can do the following: 
+	average, variance, and opponent average for each player in both lists.  To compute a list of distances we can do the following: 
 
 </p>
 <pre><code>
@@ -214,6 +214,25 @@ public static double calculateDistance(player p, player p2)
 
 			</code></pre></p></div>
 
+<div>
+Now we have a list of distances for each player compared to players who played on previous nights.  This is where "K" comes in.  There is some theory on how to choose K, I won't bother with that.  Usually I just take a percentile
+of the length of the list to compute a K.  For example, say I had 20,000 distances for a given player.  I'll take the closest 2% of the list of distances, and computer their average.   From here, I'll take the output value (points on given night) of the top 2% of the nearest neighebors, average them,
+and this will be my output.  Example:</div>
+<pre><code>
+foreach(KeyValuePair<string, List<double>> entry in player_Alldistances)
+{
+    //get index of top 2%
+    int twoPercent = entry.Value.Count * .02;
+    entry.Value=entry.Value.OrderByAscending(x => x).ToList();
+    double total = 0;
+    for(int i = 0;i<twoPercent;i++){
+        total+=entry.Value.ElementAt(i);
+    }
+    double average = total / twoPercent;
+    Console.Write(entry.Key+" guessed value="+average);
+}
+
+			</code></pre>
 
 
 	  <div class="docs-section" style={intro} id="client">
