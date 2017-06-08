@@ -178,7 +178,7 @@ public static double calculateDistance(player p, player p2)
 
 <div>
 Now we have a list of distances for each player compared to players who played on previous nights.  This is where "K" comes in.  There is some theory on how to choose K, but I'll just take a percentile
-of the length of the list to compute a K.  Here I'll take the closest 2% of the list of distances, and compute their average.   From here, I'll take the output value (points on given night) of the top 2% of the nearest neighbors, average them,
+of the length of the list to compute a K.  Below I'll take the closest 2% of the list of distances.   From here, I'll take the output value (points on given night) of the top 2% of the nearest neighbors, average them,
 and this will be my output.  Example:
 <pre><code>
 foreach(KeyValuePair&ltstring, List&ltdouble&gt&gt entry in player_Alldistances)
@@ -196,7 +196,7 @@ foreach(KeyValuePair&ltstring, List&ltdouble&gt&gt entry in player_Alldistances)
 
 			</code></pre>
 </div>
-		  <p>For the example above, say we set K=2.</br>Here are the raw computations.  Not making pretty because lazy.</p>
+		  <p>Doing this manually, say we set K=2.</br>Here are the raw computations.  Not making pretty because lazy.</p>
 		  <div>
 			<p>
 PG-The Unibrow: sqrt((((36.05-26.555)/(58.4-26.55))-((55.1-26.55)/(58.4-26.55)))^2+(((52.68-52.68)/(321.98-52.68))-((321.98-52.6875)/(321.98-52.6875)))^2+(((185.019-185.019)/(209.71-185.019))-((203.155-185.019)/(209.71-185.019)))^2)=1.37
