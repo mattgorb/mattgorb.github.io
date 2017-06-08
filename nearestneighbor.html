@@ -149,9 +149,9 @@ Say we have a list named "tonight" of players playing tonight.  We do not know h
 
 </p>
 <pre><code>
-Dictionary-string, List-double-- player_Alldistances = new Dictionary-string, List<double--();
+Dictionary&lt; string, List&lt; double&gt;  player_Alldistances = new Dictionary&lt; string, List&lt; double&gt&gt();
 foreach(player p in tonight){
-    List-double- distances = new List-double-();
+    List&ltdouble&gt distances = new List-double-();
     foreach(player p2 in previous){
            distances.Add(calculateDistance(p, p2));
     }
