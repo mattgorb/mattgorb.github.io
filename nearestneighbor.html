@@ -233,14 +233,17 @@ PG-The Unibrow: sqrt((((36.05-26.555)/(58.4-26.55))-((55.1-26.55)/(58.4-26.55)))
 			  </p></div>
 
 		  <p>The two closest neighbors, Serge Ibaka and Rudy Gay scored 48.4 and 41.8 points, for an average of 45.1 points.  Paul George only scored 35.9 points.  </p>
-                  <h3>Correlation</h3>
-		 
-              
+                  
+<h3>Weighting</h3>
+<p>It's usually useful to assign weights to each neighbor, depending on how close they are.  A common method is to use 1/d, where d is the distance to the distance. 
+	For the example above, Serge Ibaka is the closest neighbor, with d=1.  Rudy Gay is second with d=2.  The math to compute the output would be (48.4(1/1)+41.8(1/2))/2	</p>
 
+
+<h3>Correlation</h3>
 <div>Another thing you could do is weight the distances by correlation.  I won't go through the correlation computations but I'll include a formula.  This is a 
 method they use in gene expression microarray data.  Here is the formula for the Pearson correlation coefficient:</br>
 <img src="mlb pics/Screenshot from 2017-06-07 19-54-37.png" width="30%" height="30%"/></div>
-</br>The correlation coefficient for average points is .772, .356 for variance, and .52 for Opponent average points
+</br>The correlation coefficient for average points is .772, .356 for variance, and .52 for opponent average points.  I multiple these coefficients by the differences below
 <p>
 	<p>		 
 
@@ -253,9 +256,6 @@ PG-The Unibrow: sqrt(.772((((36.05-26.555)/(58.4-26.55))-((55.1-26.55)/(58.4-26.
 </br>PG-KPizzle: sqrt(.772((((36.05-26.555)/(58.4-26.555))-((34.5947-26.555)/(58.4-26.555)))^2+0.356(((52.6875-52.6875)/(321.98-52.6875))-((61.93-52.6875)/(321.98-52.6875)))^2+0.52(((185.019-185.019)/(209.71-185.019))-((204.37-185.019)/(209.71-185.019)))^2)=0.4985
 </p>
 </p>
-
-
-
 
 
 
