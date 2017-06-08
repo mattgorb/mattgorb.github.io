@@ -149,9 +149,9 @@ Say we have a list named "tonight" of players playing tonight.  We do not know h
 
 </p>
 <pre><code>
-Dictionary&lt; string, List&lt; double&gt;  player_Alldistances = new Dictionary&lt; string, List&lt; double&gt&gt();
+Dictionary&lt;string,List&lt;double&gt;  player_Alldistances = new Dictionary&lt;string,List&lt;double&gt&gt();
 foreach(player p in tonight){
-    List&ltdouble&gt distances = new List-double-();
+    List&ltdouble&gt distances = new List&ltdouble&gt();
     foreach(player p2 in previous){
            distances.Add(calculateDistance(p, p2));
     }
@@ -181,11 +181,11 @@ Now we have a list of distances for each player compared to players who played o
 of the length of the list to compute a K.  For example, say I had 20,000 distances for a given player.  I'll take the closest 2% of the list of distances, and computer their average.   From here, I'll take the output value (points on given night) of the top 2% of the nearest neighbors, average them,
 and this will be my output.  Example:
 <pre><code>
-foreach(KeyValuePair-string, List-double-- entry in player_Alldistances)
+foreach(KeyValuePair&ltstring, List&ltdouble&gt&gt entry in player_Alldistances)
 {
     //get index of top 2%
     int twoPercent = entry.Value.Count * .02;
-    entry.Value=entry.Value.OrderByAscending(x => x).ToList();
+    entry.Value=entry.Value.OrderByAscending(x =&gt x).ToList();
     double total = 0;
     for(int i = 0;i(less than)twoPercent;i++){
         total+=entry.Value.ElementAt(i);
