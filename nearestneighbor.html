@@ -178,7 +178,7 @@ public static double calculateDistance(player p, player p2)
 
 <div>
 Now we have a list of distances for each player compared to players who played on previous nights.  This is where "K" comes in.  There is some theory on how to choose K, but I'll just take a percentile
-of the length of the list to compute a K.  For example, say I had 20,000 distances for a given player.  I'll take the closest 2% of the list of distances, and computer their average.   From here, I'll take the output value (points on given night) of the top 2% of the nearest neighbors, average them,
+of the length of the list to compute a K.  Here I'll take the closest 2% of the list of distances, and compute their average.   From here, I'll take the output value (points on given night) of the top 2% of the nearest neighbors, average them,
 and this will be my output.  Example:
 <pre><code>
 foreach(KeyValuePair&ltstring, List&ltdouble&gt&gt entry in player_Alldistances)
