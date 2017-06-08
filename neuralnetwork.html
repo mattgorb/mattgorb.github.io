@@ -96,6 +96,7 @@
 		  <p>Data</p>
 		  <p>https://github.com/mattgorb/MLBFantasyNeuralNet/blob/master/MLBData.py </br></p>
 		  <p>Note that the input data should already be normalized.  For my particular use case I used Min-Max Normalization, or scaling your data between [0,1].  The normalization code isn't included in this project since it was written in C#.  </p>
+<p>A little bit about data.  I'm going to be using NumPy here, which is a linear algebra library for Python.  I read all my data from csv.  A basic implementation of this is below which creates two matrices, inputData and outputData.  The output data is in the fifth column of the csv file and the input data is from the sixth column to the last column.</p>
 <p>Links on data normalization: https://stats.stackexchange.com/questions/7757/data-normalization-and-standardization-in-neural-networks
 https://kratzert.github.io/2016/02/12/understanding-the-gradient-flow-through-the-batch-normalization-layer.html
 </p>		 
