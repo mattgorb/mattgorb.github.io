@@ -124,7 +124,7 @@
   </tbody>
 </table>
               <p> Say you want to predict how much Paul George is going to score on a given night, and you have all previous games statistical data.  In the dataset below, Paul George's "Points" will be the unknown.  The nearest neighbors algorithm finds the distance between all the different input variables from each other.  </br>The input variables in this case will be average points, variance points, and opponents average points. The output is the actual number of points each player scored on a given night.  We want to find the K closest distances to Paul George's statistics.  </br></p>
-		 <h3>Distance</h3>
+		 <h5>Distance</h5>
               <div><img src="mlb pics/distances.png" width="35%" height="35%"/></div>
 		 <p>For this example I'm going to use Euclidean distance.  To compute the distance between Paul George and Kristaps Porzingis we would do:</br>
 square_root((36.05-34.5947)^2 + (52.6875-61.93)^2+(185.019-204.37)^2) </br> You would repeat this computation for all rows of data (i.e. Paul George distance to Anthony Davis, Paul George distance to DeMarcus Cousins, etc.) , and the nearest K neighbors would be the K players with the smallest Euclidean distance to Paul George.</p>
@@ -210,12 +210,12 @@ PG-The Unibrow: sqrt((((36.05-26.555)/(58.4-26.55))-((55.1-26.55)/(58.4-26.55)))
 
 		  <p>The two closest neighbors, Serge Ibaka and Rudy Gay scored 48.4 and 41.8 points, for an average of 45.1 points.   </p>
                   
-<h3>Weighting</h3>
+<h5>Weighting</h5>
 <p>It's useful to assign weights to each neighbor depending on how close they are.  A common method is to use 1/d, where d is the distance to the distance. 
 	For the example above, Serge Ibaka is the closest neighbor, with d=1.  Rudy Gay is second with d=2.  The math to compute the output would be (48.4(1/1)+41.8(1/2))/2	</p>
 
 
-<h3>Correlation</h3>
+<h5>Correlation</h5>
 <div>Another thing you could do is weight the distances by correlation.  I won't go through the correlation computations but I'll include a formula.  This is a 
 method they use in gene expression microarray data.  Here is the formula for the Pearson correlation coefficient:</br>
 <img src="mlb pics/Screenshot from 2017-06-07 19-54-37.png" width="30%" height="30%"/></div>
