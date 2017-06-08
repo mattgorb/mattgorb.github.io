@@ -93,13 +93,9 @@
 	  inputs from the external environment and creating electrical impulses which travel through the connected network of the brain. A simple visualization of a 3 layer network is below.  </p>
 	<div><img src="mlb pics/NeuralNetwork.png" width="100%" height="5%"/></div>
 	  <div>My program will only have a single hidden layer.  Source code is <a href="https://github.com/mattgorb/MLBFantasyNeuralNet">here</a></div>
-		  <p>Data</p>
-		  <p>https://github.com/mattgorb/MLBFantasyNeuralNet/blob/master/MLBData.py </br></p>
-		  <p>Note that the input data should already be normalized.  For my particular use case I used Min-Max Normalization, or scaling your data between [0,1].  The normalization code isn't included in this project since it was written in C#.  </p>
-<p>A little bit about data.  I'm going to be using NumPy here, which is a linear algebra library for Python.  I read all my data from csv.  A basic implementation of this is below which creates two matrices, inputData and outputData.  The output data is in the fifth column of the csv file and the input data is from the sixth column to the last column.</p>
-<p>Links on data normalization: https://stats.stackexchange.com/questions/7757/data-normalization-and-standardization-in-neural-networks
-https://kratzert.github.io/2016/02/12/understanding-the-gradient-flow-through-the-batch-normalization-layer.html
-</p>		 
+		  <h4>Data</h4>
+		  <p>A little bit about data.  I'm going to be using NumPy here, which is a linear algebra library for Python.  I read all my data from csv.  A basic function of this is below which creates two matrices, inputData and outputData.  The output data is in the fifth column of the csv file and the input data is from the sixth column to the last column.</p>
+	 
 <pre><code>
 #Basic, stripped down data load from a CSV file to two NumPy arrays
 def LoadData(fileName, start,end):
@@ -117,6 +113,12 @@ def LoadData(fileName, start,end):
     return inputData,outputData			
 			</code></pre>
               </div>
+<p>Note that the input data should already be normalized.  For my particular use case I used Min-Max Normalization, or scaling your data between [0,1].  The normalization code isn't included in this project since it was written in C#.  </p>
+	<p>Links on data normalization: </br>
+<a href="https://stats.stackexchange.com/questions/7757/data-normalization-and-standardization-in-neural-networks">Data Normalization in Neural Networks</a>
+<a href="https://visualstudiomagazine.com/articles/2014/01/01/how-to-standardize-data-for-neural-networks.aspx">How to Standardize data for Neural Networks</a>
+
+</p>	
 	
 	
               <div class="docs-section" style={intro} id="client">
