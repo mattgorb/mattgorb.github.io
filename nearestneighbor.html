@@ -33,48 +33,25 @@
   <!-- Favicon
   �������������������������������������������������� -->
   <link rel="icon" type="image/png" href="dist/images/favicon.png">
-
-
-
-
-
 <style>
-
 </style>
-
-
-
-
-
-
 </head>
-
 <body class="code-snippets-visible">
-
-  <!-- Primary Page Layout
-  �������������������������������������������������� -->
   <div class="container">
-
-
     <div class="navbar-spacer"></div>
    <nav class="navbar">
       <div class="container">
         <ul class="navbar-list">
           <li class="navbar-item"><a class="navbar-link" href="#intro">Home</a></li>
 		<li class="navbar-item"><a class="navbar-link" href="dailymlblineups.html">MLB API</a></li>
-            
-
           <li class="navbar-item"><a class="navbar-link" href="neuralnetwork.html">Artificial Neural Network</a></li>
         </ul>
       </div>
     </nav>
-
- 
          <div><img src="mlb pics/knn.png" width="100%" height="5%"/></div>
          
 		  <p>K nearest neighbros is a simple supervised learning algorithm that consists of computing the k closest training examples in the feature space.  </p>
               <p> I'm going to use basketball statistics for this example just because I have them on hand, but it is a bad dataset for this algorithm.   </br></p>
-	
 	<table class="u-full-width">
   <thead>
     <tr>
@@ -145,8 +122,6 @@
 	  
   </tbody>
 </table>
-
-  
               <p> Say you want to predict how much Paul George is going to score on a given night, and you have all previous games statistical data.  In the dataset below, Paul George's "Points" will be the unknown.  The nearest neighbors algorithm finds the distance between all the different input variables from each other.  </br>The input variables in this case will be average points, variance points, and opponents average points. The output is the actual number of points each player scored on a given night.  We want to find the K closest distances to Paul George's statistics.  </br></p>
 		 <h3>Distance</h3>
               <div><img src="mlb pics/distances.png" width="35%" height="35%"/></div>
