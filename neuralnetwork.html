@@ -173,8 +173,10 @@ Run({"hiddenDim":2,
 	
 	
 		<div class="docs-section" style={intro} id="runScript">
-		<h5 style={{marginBottom: 0}} >The training method is the meat of the project.  This is where backpropagation and several other neural network techniques are implemented.  Here is the code with comments explaining the functionality.  </h5>
-		<pre><code>     def Train(self):
+		<h5 style={{marginBottom: 0}} >Training </h5>
+			<div>The training method is the meat of the project.  This is where backpropagation and several other neural network techniques are implemented.  Here is the code with comments explaining the functionality. </div>
+		<pre><code> 
+    def Train(self):
         global weights0,weights1,layer1_deltaPrev,layer2_deltaPrev
         
         #training iterations are set by the user in the program initialization.  This allows me to experiment. 
