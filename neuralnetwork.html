@@ -176,71 +176,71 @@ Run({"hiddenDim":2,
 		<h5 style={{marginBottom: 0}} >Training </h5>
 			<div>The training method is the meat of the project.  This is where backpropagation and several other neural network techniques are implemented.  Here is the code with comments explaining the functionality. </div>
 		<pre><code> 
-    def Train(self):
-        global weights0,weights1,layer1_deltaPrev,layer2_deltaPrev
+def Train(self):
+    global weights0,weights1,layer1_deltaPrev,layer2_deltaPrev
+    
+    #training iterations are set by the user in the program initialization.  This allows me to experiment. 
+    for iter in xrange(self.trainingIterations):
+   
+   			#layer 0 equals the training inputs in NumPy matrix form.  
+        layer0 = self.TrainingIn
         
-        #training iterations are set by the user in the program initialization.  This allows me to experiment. 
-        for iter in xrange(self.trainingIterations):
-	     
-	     			#layer 0 equals the training inputs in NumPy matrix form.  
-            layer0 = self.TrainingIn
-            
-            #neural nets should always use shuffle.  One big bug in this program is that the outputs are in a separate
-            #matrix.  This means that randomly shuffling the inputs is going to give them random outputs.  For my training
-            #I set shuffle to off.  
-				    if(self.shuffle):
-				    	np.random.shuffle(layer0)
+        #neural nets should always use shuffle.  One big bug in this program is that the outputs are in a separate
+        #matrix.  This means that randomly shuffling the inputs is going to give them random outputs.  For my training
+        #I set shuffle to off.  
+		    if(self.shuffle):
+		    	np.random.shuffle(layer0)
 
-						#np.dot is a NumPy multiplication function.  It multiplies layer0(input) by the randomly initialized weights, and is fed through the sigmoid function self.nonlin
-            layer1 = self.nonlin(np.dot(layer0,self.weights0))
+				#np.dot is a NumPy multiplication function.  It multiplies layer0(input) by the randomly initialized weights, and is fed through the sigmoid function self.nonlin
+        layer1 = self.nonlin(np.dot(layer0,self.weights0))
 
-						#you should always include a bias layer. This means adding a column of 1's to your matrix 
-            if(self.biasLayer1TF):
-                self.biaslayer1 = np.ones(layer1.shape[0])
-                layer1=np.column_stack((layer1,self.biaslayer1))
-                
-            #dropout should also always be used.  0>dropout<1
-            if(self.dropout):
-                layer1 *= np.random.binomial([np.ones((layer1.shape[0],layer1.shape[1]))],1-self.dropoutPercent)[0] * (1.0/(1-self.dropoutPercent))
+				#you should always include a bias layer. This means adding a column of 1's to your matrix 
+        if(self.biasLayer1TF):
+            self.biaslayer1 = np.ones(layer1.shape[0])
+            layer1=np.column_stack((layer1,self.biaslayer1))
             
-            #layer2 equals layer1*weights1 fed through the sigmoid function self.nonlin
-            #layer2 is what the network is predicting the output will be.  
-            layer2 = self.nonlin(np.dot(layer1,self.weights1))
-            
-            #more on this later
-            if(self.miniBtch_StochastGradTrain):
-                self.layer1_delta,self.layer2_delta=self.MiniBatchOrStochasticGradientDescent()
-                self.layer2_deltaPrev=self.layer2_delta
-                self.layer1_deltaPrev=self.layer1_delta
-            else:
+        #dropout should also always be used.  0>dropout<1
+        if(self.dropout):
+            layer1 *= np.random.binomial([np.ones((layer1.shape[0],layer1.shape[1]))],1-self.dropoutPercent)[0] * (1.0/(1-self.dropoutPercent))
+        
+        #layer2 equals layer1*weights1 fed through the sigmoid function self.nonlin
+        #layer2 is what the network is predicting the output will be.  
+        layer2 = self.nonlin(np.dot(layer1,self.weights1))
+        
+        #more on this later
+        if(self.miniBtch_StochastGradTrain):
+            self.layer1_delta,self.layer2_delta=self.MiniBatchOrStochasticGradientDescent()
+            self.layer2_deltaPrev=self.layer2_delta
+            self.layer1_deltaPrev=self.layer1_delta
+        else:
 
-								#the error= the distance between the guesses from the actual values.  
-                layer2_error = self.TrainingOut - layer2
-                
-                #take the derivative (slope) of each node in layer2, and multiply it by the error.  The higher the error,
-                #the more the slope delta will be.  Learning rate is also applied here, which is how fast you want your network to correct 
-                #itself.  Additionally momentum is applied to the end of this, which is added the previous iterations deltas to the current iteration 
-                self.layer2_delta = layer2_error*self.nonlin(layer2,deriv=True)*self.learningRate+self.momentum*self.layer2_deltaPrev
-                self.layer2_deltaPrev=self.layer2_delta
-		
-								#.T means the transposed matrix in Numpy.  
-                layer1_error = self.layer2_delta.dot(self.weights1.T)
-                self.layer1_delta = layer1_error * self.nonlin(layer1,deriv=True)*self.learningRate+self.momentum*self.layer1_deltaPrev
-                self.layer1_deltaPrev=self.layer1_delta
-    
-    				#update the weights in each layer with the delta layers
-            self.weights1 += layer1.T.dot(self.layer2_delta)
-            if(self.biasLayer1TF):
-                self.weights0 += layer0.T.dot(self.layer1_delta.T[:-1].T)
-            else:
-                self.weights0 += layer0.T.dot(self.layer1_delta)
+						#the error= the distance between the guesses from the actual values.  
+            layer2_error = self.TrainingOut - layer2
             
-    
-            if (iter% 20) == 0:
-                self.CalculateValidationError()
-		
-                if(self.minimumValidationError<0.01):
-                    break
+            #take the derivative (slope) of each node in layer2, and multiply it by the error.  The higher the error,
+            #the more the slope delta will be.  Learning rate is also applied here, which is how fast you want your network to correct 
+            #itself.  Additionally momentum is applied to the end of this, which is added the previous iterations deltas to the current iteration 
+            self.layer2_delta = layer2_error*self.nonlin(layer2,deriv=True)*self.learningRate+self.momentum*self.layer2_deltaPrev
+            self.layer2_deltaPrev=self.layer2_delta
+
+						#.T means the transposed matrix in Numpy.  
+            layer1_error = self.layer2_delta.dot(self.weights1.T)
+            self.layer1_delta = layer1_error * self.nonlin(layer1,deriv=True)*self.learningRate+self.momentum*self.layer1_deltaPrev
+            self.layer1_deltaPrev=self.layer1_delta
+
+				#update the weights in each layer with the delta layers
+        self.weights1 += layer1.T.dot(self.layer2_delta)
+        if(self.biasLayer1TF):
+            self.weights0 += layer0.T.dot(self.layer1_delta.T[:-1].T)
+        else:
+            self.weights0 += layer0.T.dot(self.layer1_delta)
+        
+
+        if (iter% 20) == 0:
+            self.CalculateValidationError()
+
+            if(self.minimumValidationError<0.01):
+                break
 		</code></pre>
 
 
