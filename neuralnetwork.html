@@ -188,13 +188,13 @@ def Train(self):
         #neural nets should always use shuffle.  One big bug in this program is that the outputs are in a separate
         #matrix.  This means that randomly shuffling the inputs is going to give them random outputs.  For my training
         #I set shuffle to off.  
-		    if(self.shuffle):
-		    	np.random.shuffle(layer0)
+        if(self.shuffle):
+	    np.random.shuffle(layer0)
 
-				#np.dot is a NumPy multiplication function.  It multiplies layer0(input) by the randomly initialized weights, and is fed through the sigmoid function self.nonlin
+	#np.dot is a NumPy multiplication function.  It multiplies layer0(input) by the randomly initialized weights, and is fed through the sigmoid function self.nonlin
         layer1 = self.nonlin(np.dot(layer0,self.weights0))
 
-				#you should always include a bias layer. This means adding a column of 1's to your matrix 
+	#you should always include a bias layer. This means adding a column of 1's to your matrix 
         if(self.biasLayer1TF):
             self.biaslayer1 = np.ones(layer1.shape[0])
             layer1=np.column_stack((layer1,self.biaslayer1))
@@ -214,7 +214,7 @@ def Train(self):
             self.layer1_deltaPrev=self.layer1_delta
         else:
 
-						#the error= the distance between the guesses from the actual values.  
+	    #the error= the distance between the guesses from the actual values.  
             layer2_error = self.TrainingOut - layer2
             
             #take the derivative (slope) of each node in layer2, and multiply it by the error.  The higher the error,
@@ -223,12 +223,12 @@ def Train(self):
             self.layer2_delta = layer2_error*self.nonlin(layer2,deriv=True)*self.learningRate+self.momentum*self.layer2_deltaPrev
             self.layer2_deltaPrev=self.layer2_delta
 
-						#.T means the transposed matrix in Numpy.  
+	    #.T means the transposed matrix in Numpy.  
             layer1_error = self.layer2_delta.dot(self.weights1.T)
             self.layer1_delta = layer1_error * self.nonlin(layer1,deriv=True)*self.learningRate+self.momentum*self.layer1_deltaPrev
             self.layer1_deltaPrev=self.layer1_delta
 
-				#update the weights in each layer with the delta layers
+	#update the weights in each layer with the delta layers
         self.weights1 += layer1.T.dot(self.layer2_delta)
         if(self.biasLayer1TF):
             self.weights0 += layer0.T.dot(self.layer1_delta.T[:-1].T)
