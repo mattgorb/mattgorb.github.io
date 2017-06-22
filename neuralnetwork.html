@@ -215,13 +215,8 @@ def Train(self):
                   <h5 style={{marginBottom: 0}} >Example</h5>
 		      <div>I'm going to walkthrough the neural net code above with the following data:</div>
 		       <div><img src="mlb pics/input.png" width="20%" height="5%"/></div>
-		  	<pre><code></code></pre>
-              </div>
-
-
-			              <div class="docs-section" style={intro} id="client">
-
-					      <p>The network parameters are set in the following code in main.py.  These parameters get sent to the Neural Network class and initialize the model.  </p>
+              
+		<p>The network parameters are set in the following code in main.py.  These parameters get sent to the Neural Network class and initialize the model.  </p>
 		      <p>I'm going to concentrate on hiddenDim, learningRate, trainingIterations, momentum, dropout, bias, and shuffle.  </p>
 		      
 		  	<pre><code>
@@ -232,9 +227,7 @@ Run({"hiddenDim":2,"learningRate":.05,"trainingIterations":5000,"momentum":.1,
 			</code></pre>
 					      
 		       <p>For now I'm going to skip over mini batch training, stochastic gradient descent training, and N-fold cross validation.  I'll talk about these concepts later.  </p>
-              </div>
-			
-			<div>
+
 			Since we are working with such a simple dataset I'm going to skip over validation data and test data.  Our test data will simply be our training data.  
 			<p>Looking at the table above we have 4 rows with 3 variables of input data.  The output data is 4 rows with 1 variable. 
 				So we will have a TestIn matrix of size 4x3 and a TestOut matrix of 4x1.    
