@@ -212,7 +212,7 @@ def Train(self):
 
 
               <div class="docs-section" style={intro} id="client">
-                  <h5 style={{marginBottom: 0}} >Example</h5>
+                  <h2 style={{marginBottom: 0}} >Example</h2>
 		      <div>I'm going to walkthrough the neural net code above with the following data:</div>
 		       <div><img src="mlb pics/input.png" width="20%" height="5%"/></div>
               
@@ -241,7 +241,7 @@ Run({"hiddenDim":2,"learningRate":.05,"trainingIterations":5000,"momentum":.1,
 			
 			
 			</div>
-
+<h5>Initializing weights and delta previous</h5>
 <div>In my NeuralNet class __init__ code I initialize the weights based on the hiddenDim variable: 
 <pre><code>np.random.seed(1)
 self.weights0 = (2*np.random.random((self.TrainingIn.shape[1],self.hiddenDim)) - 1)
@@ -252,8 +252,8 @@ self.weights1 = (2*np.random.random((self.hiddenDim+1 if self.biasLayer1TF else 
 self.TrainingIn.shape returns the size of the matrix, in our case 4x3.  Therefore self.TrainingIn.shape[1] returns the second number of this value, 3.  </br>
 hiddenDim was set to 2 in our initalization parameters above.  So self.weights0 will be a matrix of size 3X2 with random numbers between -1 and 1.  </br>
 
-Since bias is turned off for this example, weights 1 will be initialized with a matrix size 2(hiddenDim)x1 with random numbers between -1 and 1.  </br></br>
-We also need to intialize "layerx_deltaPrev" matrices for momentum.  np.zeros fills the matrix up with 0's.  
+Since bias is turned off for this example, weights1 will be initialized with a matrix size 2(hiddenDim)x1 with random numbers between -1 and 1.  </br></br>
+We also need to intialize "layerx_deltaPrev" matrices for momentum.  </br>np.zeros creates a matrix of 0's.  
 <pre><code>self.layer2_deltaPrev=np.zeros(shape=(self.TrainingOut.shape[0],self.weights1.shape[1]))
 self.layer1_deltaPrev=np.zeros(shape=(self.TrainingIn.shape[0],self.hiddenDim+1 if self.biasLayer1TF else self.hiddenDim))
 </code></pre>
@@ -264,6 +264,7 @@ self.layer2_deltaPrev will be a matrix of size 4X1, and self.layer1_deltaPrev wi
 	</p>
 </div>
 
+<h5>Training</h5>
 <div>Now we're ready to start training.  </br>
 
 
