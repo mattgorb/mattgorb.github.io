@@ -250,8 +250,12 @@ Run({"hiddenDim":2,
 			
 			<div>
 			The input data is a 4x3 matrix.  Looking at the table above we have 4 rows with 3 variables of input data.  The output data is 4 rows with 1 variable.   
-			In my code available on my project, I'm sending the Neural Network several sets of data:
+			In my code available on my project, I'm sending the Neural Network several sets of data-
 				Data={'TrainingIn':TrainingIn,'TrainingOut':TrainingOut,'TestIn':TestIn,'TestOut':TestOut,'ValidationIn':ValidationIn,'ValidationOut':ValidationOut,'TestDataForCSV':TestDataForCSV}.  
+			Here I'm just going to send it TestIn and TestOut data.  Meaning the input and the output in the table above.  
+			This looks like the following as a NumPy array
+			TestIn = np.array([ [0,0,1],[0,1,1],[1,0,1],[1,1,1] ])
+			TestOut = np.array([[0,1,1,0]]).T	
 			
 			</div>
 			
