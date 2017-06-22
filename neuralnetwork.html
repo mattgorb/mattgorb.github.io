@@ -220,8 +220,9 @@ def Train(self):
 
 
 			              <div class="docs-section" style={intro} id="client">
-                  <h5 style={{marginBottom: 0}} >Main.py</h5>
-		      <pThe network parameters get initialized in the following code in Main.py</p>
+
+					      <pThe network parameters are set in the following code in main.py.  These parameters get sent to the Neural Network class and initialize the model.  </p>
+		      
 		      
 		  	<pre><code>
 Run({"hiddenDim":2,
@@ -231,15 +232,12 @@ Run({"hiddenDim":2,
 "momentum":.1,
 "dropout":True,"dropoutPercent":0.65,
 "biasLayer1TF":True,"addInputBias":True,
-"NFoldCrossValidation":False,#"N":'Dates',
-"N":5,
-"shuffle":False
-}
-)	
-			
+"NFoldCrossValidation":False,"N":null,
+"shuffle":False})	
 			</code></pre>
-		       <p>I'm going to skip over mini batch and stochastic gradient descent training for now as well as N-fold cross validation.  I'll talk about these concepts below.  </p>
-		      <p></p>
+					      <p>I'm going to concentrate on hiddenDim, learningRate, trainingIterations, momentum, dropout, bias, and shuffle.  </p>
+		       <p>I'm going to skip over mini batch and stochastic gradient descent training for now as well as N-fold cross validation.  I'll talk about these concepts later.  </p>
+		      
 		      <p></p>
 		      <p></p>
 		      <p>trainingIterations: >1.  </p>
@@ -252,6 +250,9 @@ Run({"hiddenDim":2,
 			
 			<div>
 			The input data is a 4x3 matrix.  Looking at the table above we have 4 rows with 3 variables of input data.  The output data is 4 rows with 1 variable.   
+			In my code available on my project, I'm sending the Neural Network several sets of data:
+				Data={'TrainingIn':TrainingIn,'TrainingOut':TrainingOut,'TestIn':TestIn,'TestOut':TestOut,'ValidationIn':ValidationIn,'ValidationOut':ValidationOut,'TestDataForCSV':TestDataForCSV}.  
+			
 			</div>
 			
 			
