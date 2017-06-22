@@ -248,21 +248,25 @@ self.weights0 = (2*np.random.random((self.TrainingIn.shape[1],self.hiddenDim)) -
 self.weights1 = (2*np.random.random((self.hiddenDim+1 if self.biasLayer1TF else self.hiddenDim,1)) - 1)
 </code></pre>
 	<p>
-	np.random.random creates a matrix of random numbers between 0 and 1.  It is best practice to keep randomly initialized weights between -1 and 1, so I multiply these numbers by 2 and subtract 1.  </br>
+	np.random.random creates a matrix of random numbers between 0 and 1.  It is best practice to initialize the weights randomly with mean 0, so I multiply these numbers by 2 and subtract 1.  </br>
 self.TrainingIn.shape returns the size of the matrix, in our case 4x3.  Therefore self.TrainingIn.shape[1] returns the second number of this value, 3.  </br>
 hiddenDim was set to 2 in our initalization parameters above.  So self.weights0 will be a matrix of size 3X2 with random numbers between -1 and 1.  </br>
 
 Since bias is turned off for this example, weights 1 will be initialized with a matrix size 2(hiddenDim)x1 with random numbers between -1 and 1.  </br></br>
 We also need to intialize "layerx_deltaPrev" matrices for momentum.  np.zeros fills the matrix up with 0's.  
-<pre><code>
-        self.layer2_deltaPrev=np.zeros(shape=(self.TrainingOut.shape[0],self.weights1.shape[1]))
-        self.layer1_deltaPrev=np.zeros(shape=(self.TrainingIn.shape[0],self.hiddenDim+1 if self.biasLayer1TF else self.hiddenDim))
+<pre><code>self.layer2_deltaPrev=np.zeros(shape=(self.TrainingOut.shape[0],self.weights1.shape[1]))
+self.layer1_deltaPrev=np.zeros(shape=(self.TrainingIn.shape[0],self.hiddenDim+1 if self.biasLayer1TF else self.hiddenDim))
 </code></pre>
 
 self.layer2_deltaPrev will be a matrix of size 4X1, and self.layer1_deltaPrev will be a matrix of size 4x2. 
 
 
 	</p>
+</div>
+
+<div>Now we're ready to start training.  </br>
+
+
 </div>
 					      <p>Shuffle:  Randomly rearrange the data rows so that the network is fed new combinations of data on each iteration. </p>
 
