@@ -216,14 +216,17 @@ def Train(self):
 		      <div>I'm going to walkthrough the neural net code above with the following data:</div>
 		       <div><img src="mlb pics/input.png" width="20%" height="5%"/></div>
               
-		      			<p>Looking at the table above we have 4 rows with 3 variables of input data.  The output data is 4 rows with 1 result. 
+		      			<p>Looking at the table we have 4 rows with 3 variables of input data.  The output data is 4 rows with 1 result. 
 				So we will have a TestIn matrix of size 4x3 and a TestOut matrix of 4x1.    
 				The above table looks like the following in a NumPy array:</br>
 			TestIn = np.array([ [0,0,1],[0,1,1],[1,0,1],[1,1,1] ])
-			TestOut = np.array([[0,1,1,0]]).T	</p>
+			TestOut = np.array([[0,1,1,0]]).T	</br>
+			The ".T" in the TestOut variable means transpose the matrix.  It is visualized here as a 1x4 matrix, by transposing it we create a 4X1 matrix, conducive to our input set. </p>
+
 		      
-		<p>The network parameters are set in the code below in main.py.  These parameters get sent to the Neural Network class and initialize the model.  </p>
-		      <p>I'm going to concentrate on hiddenDim, learningRate, trainingIterations, momentum, dropout, bias, and shuffle.  </p>
+		<p>First I want to set the parameters.  I do this in main.py.  These parameters get sent to the Neural Network class and initialize the model. </br>
+		I'm going to concentrate on hiddenDim, learningRate, trainingIterations, momentum, dropout, and bias here. </br>Below is the parameter dictionary I send to my Neural Network class.    </p>
+		      <p> </p>
 		      
 		  	<pre><code>
 Run({"hiddenDim":2,"learningRate":.05,"trainingIterations":5000,"momentum":.1,
