@@ -225,15 +225,10 @@ def Train(self):
 		      <p>I'm going to concentrate on hiddenDim, learningRate, trainingIterations, momentum, dropout, bias, and shuffle.  </p>
 		      
 		  	<pre><code>
-Run({"hiddenDim":2,
-"learningRate":.05,
-"miniBtch_StochastGradTrain":"False","miniBtch_StochastGradTrain_Split":null,
-"trainingIterations":5000,
-"momentum":.1,
-"dropout":True,"dropoutPercent":0.65,
-"biasLayer1TF":True,"addInputBias":True,
-"NFoldCrossValidation":False,"N":null,
-"shuffle":False})	
+Run({"hiddenDim":2,"learningRate":.05,"trainingIterations":5000,"momentum":.1,
+"dropout":True,"dropoutPercent":0.65,"biasLayer1TF":True,"addInputBias":True,"shuffle":False,
+ "miniBtch_StochastGradTrain":"False","miniBtch_StochastGradTrain_Split":null,"NFoldCrossValidation":False,"N":null#skip these:
+})	
 			</code></pre>
 					      
 		       <p>For now I'm going to skip over mini batch training, stochastic gradient descent training, and N-fold cross validation.  I'll talk about these concepts later.  </p>
