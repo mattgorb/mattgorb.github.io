@@ -139,10 +139,10 @@ Test set:  The dataset you use once your training is complete to see if your mod
 def Train(self):
     global weights0,weights1,layer1_deltaPrev,layer2_deltaPrev
     
-    #training iterations are set by the user in the program initialization.  This allows me to experiment. 
+    #training iterations are set by the user in the program initialization. 
     for iter in xrange(self.trainingIterations):
    
-   			#layer 0 equals the training inputs in NumPy matrix form.  
+   	#layer 0 equals the training inputs in NumPy matrix form.  
         layer0 = self.TrainingIn
         
         #neural nets should always use shuffle.  One big bug in this program is that the outputs are in a separate
@@ -225,22 +225,45 @@ def Train(self):
 		Since we are working with such a simple dataset I'm going to skip over validation data and test data.  Our test data will simply be our training data.  
 
 <p>Now that we have input data to send to the network, I'm going set the parameters for the network. I do this in main.py.  These parameters get sent to the Neural Network class and initialize the model. </br>
-		I'm going to concentrate on the parameters hiddenDim, learningRate, trainingIterations, momentum, dropout, and bias. </br></br>Below is the parameter dictionary I send to the Neural Network class.    </p>
+		I'm going to concentrate on the parameters hiddenDim, learningRate, trainingIterations, momentum, and dropout. </br></br>Below is the parameter dictionary I send to the Neural Network class.    </p>
 		      <p> </p>
 		      
 		  	<pre><code>
 Run({"hiddenDim":2,"learningRate":.05,"trainingIterations":5000,"momentum":.1,
-"dropout":True,"dropoutPercent":0.65,"biasLayer1TF":True,"addInputBias":True,"shuffle":False,
+"dropout":True,"dropoutPercent":0.65,"biasLayer1TF":True,"addInputBias":False,"shuffle":False,
  "miniBtch_StochastGradTrain":"False","miniBtch_StochastGradTrain_Split":null,"NFoldCrossValidation":False,"N":null#skip these:
 })	
 			</code></pre>
 					      
-		       <p>For now I'm going to skip over mini batch training, stochastic gradient descent training, and N-fold cross validation.  I'll talk about these concepts later.  </p>
+		       <p>For now I'm going to skip over bias, minibatch training, stochastic gradient descent training, and N-fold cross validation.  I'll talk about these concepts later.  </p>
 
 			
 			
 			</div>
-			
+
+<div>In my NeuralNet class __init__ code I initialize the weights based on the hiddenDim variable: 
+<pre><code>
+np.random.seed(1)
+self.weights0 = (2*np.random.random((self.TrainingIn.shape[1],self.hiddenDim)) - 1)
+self.weights1 = (2*np.random.random((self.hiddenDim+1 if self.biasLayer1TF else self.hiddenDim,1)) - 1)
+</code></pre>
+	<p>
+	np.random.random creates a matrix of random numbers between 0 and 1.  It is best practice to keep randomly initialized weights between -1 and 1, so I multiply these numbers by 2 and subtract 1.  </br>
+self.TrainingIn.shape returns the size of the matrix, in our case 4x3.  Therefore self.TrainingIn.shape[1] returns the second number of this value, 3.  </br>
+hiddenDim was set to 2 in our initalization parameters above.  So self.weights0 will be a matrix of size 3X2 with random numbers between -1 and 1.  </br>
+
+Since bias is turned off for this example, weights 1 will be initialized with a matrix size 2(hiddenDim)x1 with random numbers between -1 and 1.  </br></br>
+We also need to intialize "layerx_deltaPrev" matrices for momentum.  np.zeros fills the matrix up with 0's.  
+<pre><code>
+        self.layer2_deltaPrev=np.zeros(shape=(self.TrainingOut.shape[0],self.weights1.shape[1]))
+        self.layer1_deltaPrev=np.zeros(shape=(self.TrainingIn.shape[0],self.hiddenDim+1 if self.biasLayer1TF else self.hiddenDim))
+</code></pre>
+
+self.layer2_deltaPrev will be a matrix of size 4X1, and self.layer1_deltaPrev will be a matrix of size 4x2. 
+
+
+	</p>
+</div>
 					      <p>Shuffle:  Randomly rearrange the data rows so that the network is fed new combinations of data on each iteration. </p>
 
 
