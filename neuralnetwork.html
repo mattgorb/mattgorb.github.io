@@ -230,8 +230,9 @@ def Train(self):
 		      
 		  	<pre><code>
 Run({"hiddenDim":2,"learningRate":.05,"trainingIterations":5000,"momentum":.1,
-"dropout":True,"dropoutPercent":0.65,"biasLayer1TF":True,"addInputBias":False,"shuffle":False,
- "miniBtch_StochastGradTrain":"False","miniBtch_StochastGradTrain_Split":null,"NFoldCrossValidation":False,"N":null#skip these:
+"dropout":True,"dropoutPercent":0.65,
+ "miniBtch_StochastGradTrain":"False","miniBtch_StochastGradTrain_Split":null,"NFoldCrossValidation":False,"N":null#skip these,
+ "biasLayer1TF":True,"addInputBias":False,"shuffle":False
 })	
 			</code></pre>
 					      
@@ -242,8 +243,7 @@ Run({"hiddenDim":2,"learningRate":.05,"trainingIterations":5000,"momentum":.1,
 			</div>
 
 <div>In my NeuralNet class __init__ code I initialize the weights based on the hiddenDim variable: 
-<pre><code>
-np.random.seed(1)
+<pre><code>np.random.seed(1)
 self.weights0 = (2*np.random.random((self.TrainingIn.shape[1],self.hiddenDim)) - 1)
 self.weights1 = (2*np.random.random((self.hiddenDim+1 if self.biasLayer1TF else self.hiddenDim,1)) - 1)
 </code></pre>
