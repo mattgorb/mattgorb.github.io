@@ -217,7 +217,7 @@ def Train(self):
 		       <div><img src="mlb pics/input.png" width="20%" height="5%"/></div>
               
 		      			<p>Looking at the table we have 4 rows with 3 variables of input data.  The output data is 4 rows with 1 result. 
-				So we will have a TestIn matrix of size 4x3 and a TestOut matrix of 4x1.    
+				So we will have a TrainIn matrix of size 4x3 and a TrainOut matrix of 4x1.    
 				The above table looks like the following in a NumPy array:</br>
 			TestIn = np.array([ [0,0,1],[0,1,1],[1,0,1],[1,1,1] ]) </br>
 			TestOut = np.array([[0,1,1,0]]).T	</br>
@@ -241,7 +241,7 @@ Run({"hiddenDim":2,"learningRate":.05,"trainingIterations":5000,"momentum":.1,
 			
 			
 			</div>
-<h5>Initializing weights and delta previous</h5>
+<h5>Initializing weights and deltas</h5>
 <div>In my NeuralNet class __init__ code I initialize the weights based on the hiddenDim variable: 
 <pre><code>np.random.seed(1)
 self.weights0 = (2*np.random.random((self.TrainingIn.shape[1],self.hiddenDim)) - 1)
@@ -265,8 +265,18 @@ self.layer2_deltaPrev will be a matrix of size 4X1, and self.layer1_deltaPrev wi
 </div>
 
 <h5>Training</h5>
-<div>Now we're ready to start training.  </br>
+<div>
+We're ready to enter the Train() method.  We will iterate in the for loop 5000 times to update the weights of the network based on the input data and expected output.</br>
+First I set layer0 = self.TrainingIn.  Self explanatory.</br></br>
 
+<pre><code>def nonlin(self,x,deriv=False):
+	if(deriv==True):
+    		return x*(1-x)
+	return 1/(1+np.exp(-x))
+</code></pre>
+
+
+layer1 = self.nonlin(np.dot(layer0,self.weights0)
 
 </div>
 					      <p>Shuffle:  Randomly rearrange the data rows so that the network is fed new combinations of data on each iteration. </p>
