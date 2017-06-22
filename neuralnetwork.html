@@ -219,7 +219,7 @@ def Train(self):
 		      			<p>Looking at the table we have 4 rows with 3 variables of input data.  The output data is 4 rows with 1 result. 
 				So we will have a TestIn matrix of size 4x3 and a TestOut matrix of 4x1.    
 				The above table looks like the following in a NumPy array:</br>
-			TestIn = np.array([ [0,0,1],[0,1,1],[1,0,1],[1,1,1] ])
+			TestIn = np.array([ [0,0,1],[0,1,1],[1,0,1],[1,1,1] ]) </br>
 			TestOut = np.array([[0,1,1,0]]).T	</br>
 			Note the ".T" in the TestOut variable.  This means transpose the matrix.  It is visualized here as a 1x4 matrix, by transposing it we create a 4X1 matrix, conducive to our input set.</br></br> </p>
 		Since we are working with such a simple dataset I'm going to skip over validation data and test data.  Our test data will simply be our training data.  
