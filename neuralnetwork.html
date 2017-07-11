@@ -79,6 +79,18 @@
 	  <div>My program will have a single hidden layer.  A simple visualization is below.  Source code is <a href="https://github.com/mattgorb/MLBFantasyNeuralNet">here</a></div>
 	<div><img src="mlb pics/NeuralNetwork.png" width="100%" height="5%"/></div>
 	
+	
+	
+	<h4>Stats and graphs and stuffs</h4>
+<div><img src="mlb pics/underfitting-overfitting.png" width="100%" height="5%"/></div>
+		      <div>Think of the dots above as data.  We are trying to learn from the data and create a model so that we can use it in the future for some particular use.  Here the model is the line.  </br>For example, suppose the input data is the the x coordinate and the output data is the y coordinate.  If we want to predict the y coordinate given the x coordinate, we can use the line to predict where the dot will be. </br>
+In statistcs, overfitting is making your model too complex to have a valuable predictive performance.  The overfitting line may look like it has a perfect guesses in the picture above, but in reality when an overfit model is given new inputs it makes poor predictions.  This is because it learns from the stochastic error of the data, which is the error that is random from one measurement to the next.  This causes the model to overreact to minor fluctuations in the data.  
+
+</div>	
+<div><img src="mlb pics/modelcomlexity.jpg" width="100%" height="5%"/></div>
+<div><img src="mlb pics/overfit.jpg" width="100%" height="5%"/></div>	
+	
+	
 		  <h4>Data</h4>
 		  <p>I'm going to be using NumPy here, which is a linear algebra library for Python.  I read all my data from csv.  A basic function of this is below which creates two matrices, inputData and outputData.  The output data is in the fifth column of the csv file and the input data is from the sixth column to the last column.</p>
 	 
@@ -189,11 +201,11 @@ def Train(self):
 		</code></pre>
 
 
-<h2 style={{marginBottom: 0}} >Quick note on statistics</h2>
-		     
-			<div><img src="mlb pics/underfitting-overfitting.png" width="100%" height="5%"/></div>
- <div></div>
 
+			
+
+			
+			
 
 
 
