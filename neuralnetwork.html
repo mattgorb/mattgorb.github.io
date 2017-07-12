@@ -281,7 +281,6 @@ Next the resulting 4x2 matrix gets sent through the function nonlin().  Code:
 </code></pre>
 This is the sigmoid function.  1/(1+e^(-x)).</br>
 Important function.  Google it.   This is our nonlinearity function.  Notice it maps any value to a value between 0 and 1, a probabilistic scale.  Its derivative returns x*(1-x). We will use this when computing the gradient in a few steps. </br> </br>
-The
 
 The next line is indicating whether to add a bias node to the layer.  This is a column of 1's in your matrix.  Bias is good in every neural network, it is used for shifting your activation function to the left or right on the graph.  
 
@@ -311,14 +310,14 @@ self.learningRate is the rate you want your network to update its weights.  It c
 self.momentum*self.layer2_deltaPrev 
 </br>The momentum number is also between 0 and 1, and could be thought of as the velocity you want your neural network to learn with the memory of past velocities.  So, if you are going down the gradient, searching for the minimum (as in the picture below), you don't want to rapidly change directions at each step because some directions could lead to local minima.  Momentum smooths out the descent and pushes the network in the direction that most of the weights push it, rather than the current weight.   You do this by adding the weights from the previous iterations delta to the current iteration:</br>
 self.layer2_deltaPrev=self.layer2_delta</br>From here it can use the variable layer2_deltaPrev for the next iteration.  </br></br>
-Note* Because layer2_error is a 4x1 matrix and layer2 is also a 4x1 matrix, we are multiplying the matrices "elementwise" .  
+Note* Because layer2_error is a 4x1 matrix and layer2 is also a 4x1 matrix, we are taking the Hadamard product, which is multiplying the corresponding cell in each matrix with each other to produce a matrix of the same size.  
 The output of layer2_delta will be a 4x1 matrix.  </br></br>
 Next we calculate the layer1_error:
 <pre><code>
 layer1_error = self.layer2_delta.dot(self.weights1.T)
 </code></pre>
 weights1 is a 2x1 matrix.  .T transposes the matrix to get a 1x2 matrix.  Therefore the output size for layer1_error is (4x1)*(1x2)=4x2 matrix.  Which is the size of the weights0 matrix.  </br>
-We again do an elementwise multiplication to get the layer1_delta.  We do this with the following code: 
+We again do Hadamard, or "elementwise" multiplication to get the layer1_delta.  We do this with the following code: 
 <pre><code>
             self.layer1_delta = layer1_error * self.nonlin(layer1,deriv=True)*self.learningRate+self.momentum*self.layer1_deltaPrev
             self.layer1_deltaPrev=self.layer1_delta
