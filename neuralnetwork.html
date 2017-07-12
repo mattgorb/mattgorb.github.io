@@ -266,24 +266,84 @@ self.layer2_deltaPrev will be a matrix of size 4X1, and self.layer1_deltaPrev wi
 	</p>
 </div>
 
+
+
 <h5>Training</h5>
 <div>
 We're ready to enter the Train() method.  We will iterate in the for loop 5000 times to update the weights of the network based on the input data and expected output.</br>
-First I set layer0 = self.TrainingIn.  Self explanatory.</br></br>
+First I set layer0 = self.TrainingIn.  Self explanatory.</br>
+Shuffle is rearranging the data into random rows.  </br></br>
 The next line of code is doing a lot: </br>
-layer1 = self.nonlin(np.dot(layer0,self.weights0)
-Now we want to multiply the matrix by the weights0 matrix. </br>
-Remember these have to be compatible sizes.  Since layer0 is of size 4x3 and weights0 is size 3x2, we can multiply these together to 
-output a 4x2 matrix.  This 4x2 matrix equals layer1. 
+<pre><code>def nonlin(self,x,deriv=False):
+layer1 = self.nonlin(np.dot(layer0,self.weights0)</br>
+</code></pre>
+
+np.dot is matrix multiplication.  Multiply the matrix layer0 by self.weights0.  </br>
+Remember back to linear algebra, these matrices have to be compatible sizes.  Since layer0 is  size 4x3 and weights0 is size 3x2, we can multiply these together to output a 4x2 matrix.  (For matrix multiplication the middle two numbers have to be the same)</br>
+The 4x2 layer1 matrix is illustrated in the picture at the top of the page as the circles in the middle depicting the "hidden layer".  The weights are depicted as the lines between the different layers of the  network.  
+</br>
+Next the resulting 4x2 matrix gets sent through the function nonlin().  Code:
+
 <pre><code>def nonlin(self,x,deriv=False):
 	if(deriv==True):
     		return x*(1-x)
 	return 1/(1+np.exp(-x))
 </code></pre>
+This is the sigmoid function.  1/(1+e^(-x)).</br>
+Important function.  Google it.   This is our nonlinearity function.  Notice it maps any value to a value between 0 and 1, a probabilistic scale.  Its derivative returns x*(1-x). We will use this when computing the gradient in a few steps. </br> </br>
+The
 
+The next line is indicating whether to add a bias node to the layer.  This is a column of 1's in your matrix.  
+</br></br>
+Dropout
 
+</br>
+The next line of code is similar to the above code, but it's computing the final output layer.  In other words, the model is guessing what the actual output values will be, which in this case is 0, 1, 1, 0.  
+<pre><code>
+ layer2 = self.nonlin(np.dot(layer1,self.weights1))
+</code></pre>
+Layer1 is a 4x2 matrix, and self.weights1 is a 2x1 matrix.  Multiply these together and get a 4x1 matrix.  Notice this is the same size as the output matrix.  Next we will compute the error and deltas and begin the fun stuff, backpropagation.     
+<h5>Backpropagation</h5>s
+<pre><code>
+layer2_error = self.TrainingOut - layer2
+</code></pre>
+The self.TrainingOut matrix is the actual output values for the dataset, 0,1,1,0.  Layer2 is what the neural network guessed.  Subtracting layer2 from TrainingOut will tell the network how far off its guessed values are to the actual values.  
 
+<pre><code>
+self.layer2_delta = layer2_error*self.nonlin(layer2,deriv=True)*self.learningRate+self.momentum*self.layer2_deltaPrev
+</code></pre>
+The simple version of the delta, or the error weighted derivative, is layer2_error*self.nonlin(layer2,deriv=True).  You can see that this is taking the slope (derivative) for the weights and multiplying these by the layer2_error.  
+</br></br>
+self.learningRate is the rate you want your network to update its weights.  It can be between 0 and 1 and the default is 1.  I think of the learning rate as the rate at which which you want your network to abandon its preconceived ideas about the data.  </br>I learned how important learning rate becomes when fine-tuning a pretrained network on new data.  Fine-tuning involves using a pre-existing model such as ResNet or Google's Inception that has weights based on a specific dataset, and training it on your own data.  When you attempt to train your data's new nodes with a high learning rate, the new nodes won't know anything about the data, and will proceed to update all of the pre-trained models learned weights.  This means that all the work the model did to learn its pretrained weights will be wiped out.  
+</br> I got slightly fancy and implemented momentum as well.  Momentum is the second part of the code in the line above:</br>
+self.momentum*self.layer2_deltaPrev 
+</br>The momentum number is also between 0 and 1, and could be thought of as the velocity you want your neural network to learn with the memory of past velocities.  So, if you are going down the gradient, searching for the minimum (as in the picture below), you don't want to rapidly change directions at each step because some directions could lead to local minima.  Momentum smooths out the descent and pushes the network in the direction that most of the weights push it, rather than the current weight.   You do this by adding the weights from the previous iterations delta to the current iteration:</br>
+self.layer2_deltaPrev=self.layer2_delta</br>From here it can use the variable layer2_deltaPrev for the next iteration.  </br></br>
+Note* Because layer2_error is a 4x1 matrix and layer2 is also a 4x1 matrix, we are multiplying the matrices "elementwise" .  
+The output of layer2_delta will be a 4x1 matrix.  </br></br>
+Next we calculate the layer1_error:
+<pre><code>
+layer1_error = self.layer2_delta.dot(self.weights1.T)
+</code></pre>
+weights1 is a 2x1 matrix.  .T transposes the matrix to get a 1x2 matrix.  Therefore the output size for layer1_error is (4x1)*(1x2)=4x2 matrix.  Which is the size of the weights0 matrix.  </br>
+We again do an elementwise multiplication to get the layer1_delta.  We do this with the following code: 
+<pre><code>
+            self.layer1_delta = layer1_error * self.nonlin(layer1,deriv=True)*self.learningRate+self.momentum*self.layer1_deltaPrev
+            self.layer1_deltaPrev=self.layer1_delta
+</code></pre>
+Momentum and learning rate are applied in the same way they were for layer2_delta, and and layer1_deltaPrev is saved off as well.  </br></br>
 
+Now we update the weights of the network, which is what holds the "learned" information about the data:
+<pre><code>
+self.weights1 += layer1.T.dot(self.layer2_delta)
+</code></pre>
+layer2_delta=(4x1) shaped matrix.</br>
+layer1=(4x2) shaped matrix -> Transposed=(2x4) shaped matrix.  </br>
+2x4 matrix * 4x1 matrix=2x1 matrix, or the weights1 shape.  We add these values to the randomized weights so that weights1 can update with numbers that will more accurately guess what the output will be next time it forward propogates.  
+
+self.weights0 += layer0.T.dot(self.layer1_delta)
+
+the differential calculus the network uses to correct itself and
 </div>
 					      <p>Shuffle:  Randomly rearrange the data rows so that the network is fed new combinations of data on each iteration. </p>
 
