@@ -76,7 +76,7 @@
 		      I wanted to build it from scratch so I could attempt to understand and conceptualize the math involved.  </p></p>
 	  A neural network is a learning algorithm that attempts to solve complex problems in computer vision, speech recognition, and other fields in artificial intelligence.  Artificial Neural Networks were named after their similarity to the human brain, with its millions of neurons and axons receiving 
 	  inputs from the external environment and creating electrical impulses which travel through the connected network of the brain. </p>
-	  <div>My program will have a single hidden layer.  A simple visualization is below.  Source code is <a href="https://github.com/mattgorb/MLBFantasyNeuralNet">here</a></div>
+	  <div>My program will have a single hidden layer.  A simple visualization is below.  <a   href="https://github.com/mattgorb/MLBFantasyNeuralNet">Source code is here</a></div>
 	<div><img src="mlb pics/NeuralNetwork.png" width="100%" height="5%"/></div>
 	
 	
@@ -283,9 +283,11 @@ This is the sigmoid function.  1/(1+e^(-x)).</br>
 Important function.  Google it.   This is our nonlinearity function.  Notice it maps any value to a value between 0 and 1, a probabilistic scale.  Its derivative returns x*(1-x). We will use this when computing the gradient in a few steps. </br> </br>
 The
 
-The next line is indicating whether to add a bias node to the layer.  This is a column of 1's in your matrix.  
-</br></br>
-Dropout
+The next line is indicating whether to add a bias node to the layer.  This is a column of 1's in your matrix.  Bias is good in every neural network, it is used for shifting your activation function to the left or right on the graph.  
+
+<a   href="https://stackoverflow.com/questions/2480650/role-of-bias-in-neural-networks">Great link</a>
+
+<h5>Dropout</h5>
 
 </br>
 The next line of code is similar to the above code, but it's computing the final output layer.  In other words, the model is guessing what the actual output values will be, which in this case is 0, 1, 1, 0.  
