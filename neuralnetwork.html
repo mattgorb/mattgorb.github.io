@@ -130,7 +130,7 @@ In statistcs, overfitting is making your model too complex to have a valuable pr
 	
 	
 		<div class="docs-section" style={intro} id="runScript">
-		<h3 style={{marginBottom: 0}} >Example </h3>
+		<h3 style={{marginBottom: 0}} >Training </h3>
 			<div>The training method is the meat of the project.  This is where backpropagation and several other neural network techniques are implemented.  Here is the code with comments explaining the functionality. </div>
 		<pre><code> 
 def Train(self):
@@ -214,7 +214,7 @@ def Train(self):
 
 
               <div class="docs-section" style={intro} id="client">
-                  <h2 style={{marginBottom: 0}} >Example</h2>
+                  <h4 style={{marginBottom: 0}} >Example</h4>
 		      <div>I'm going to walkthrough the neural net code above with the following data:</div>
 		       <div><img src="mlb pics/input.png" width="20%" height="5%"/></div>
               
@@ -264,7 +264,7 @@ self.layer2_deltaPrev will be a matrix of size 4X1, and self.layer1_deltaPrev wi
 
 
 	</p>
-<h4>Training()</h4>
+<h4>Train()</h4>
 We're ready to enter the Train() method that I copied above.  We will iterate in the for loop 5000 times to update the weights of the network based on the input data and expected output.</br>
 First I set layer0 = self.TrainingIn.  Self explanatory.</br>
 Shuffle is rearranging the data into random rows.  </br></br>
