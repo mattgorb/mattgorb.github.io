@@ -218,7 +218,7 @@ def Train(self):
 				The above table looks like the following in a NumPy array:</br>
 			TestIn = np.array([ [0,0,1],[0,1,1],[1,0,1],[1,1,1] ]) </br>
 			TestOut = np.array([[0,1,1,0]]).T	</br>
-			Note the ".T" in the TestOut variable.  This means transpose the matrix.  It is visualized here as a 1x4 matrix, by transposing it we create a 4X1 matrix, conducive to our input set.</br></br> </p>
+			Note the ".T" in the TestOut variable.  This means transpose the matrix.  It is visualized here as a 1x4 matrix, by transposing it we create a 4X1 matrix, conducive to our input set.</p>
 		Since we are working with such a simple dataset I'm going to skip over validation data and test data.  Our test data will simply be our training data.  
 
 <p>Now that we have input data to send to the network, I'm going set the parameters for the network. I do this in main.py.  These parameters get sent to the Neural Network class and initialize the model. </br>
@@ -260,16 +260,16 @@ self.layer2_deltaPrev will be a matrix of size 4X1, and self.layer1_deltaPrev wi
 
 	</p>
 <h4>Train()</h4>
-We're ready to enter the Train() method that I copied above.  We will iterate in the for loop 5000 times to update the weights of the network based on the input data and expected output.</br>
-First I set layer0 = self.TrainingIn.  Self explanatory.</br>
-Shuffle is rearranging the data into random rows.  </br></br>
+We're ready to enter the Train() method from above.  We will iterate in the for loop 5000 times to update the weights of the network based on the input data and expected output.</br>
+layer0 = self.TrainingIn.  Self explanatory.</br>
+Shuffle is rearranging the data into random rows.  </br>
 The next line of code is doing a lot: </br>
 <pre><code>    
 layer1 = self.nonlin(np.dot(layer0,self.weights0)</br>
 </code></pre>
 
 np.dot is matrix multiplication.  Multiply the matrix layer0 by self.weights0.  </br>
-Remember back to linear algebra, these matrices have to be compatible sizes.  Since layer0 is  size 4x3 and weights0 is size 3x2, we can multiply these together to output a 4x2 matrix.  (For matrix multiplication the middle two numbers have to be the same)</br>
+Remember back to linear algebra, these matrices have to be compatible sizes.  Since layer0 is  size 4x3 and weights0 is size 3x2, we can multiply these together to output a 4x2 matrix.  (For matrix multiplication the middle two numbers have to be the same)</br></br>
 The 4x2 layer1 matrix is illustrated in the picture at the top of the page as the circles in the middle depicting the "hidden layer".  The weights are depicted as the lines between the different layers of the  network.  
 </br>
 Next the resulting 4x2 matrix gets sent through the function nonlin().  Code:
