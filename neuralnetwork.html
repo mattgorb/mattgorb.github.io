@@ -265,15 +265,12 @@ self.layer2_deltaPrev will be a matrix of size 4X1, and self.layer1_deltaPrev wi
 
 	</p>
 
-We're ready to enter the Train() method.  We will iterate in the for loop 5000 times to update the weights of the network based on the input data and expected output.</br>
+We're ready to enter the Train() method that I copied above.  We will iterate in the for loop 5000 times to update the weights of the network based on the input data and expected output.</br>
 First I set layer0 = self.TrainingIn.  Self explanatory.</br>
 Shuffle is rearranging the data into random rows.  </br></br>
 The next line of code is doing a lot: </br>
 <pre><code>    
-    def nonlin(self,x,deriv=False):
-        if(deriv==True):
-            return x*(1-x)
-        return 1/(1+np.exp(-x))
+layer1 = self.nonlin(np.dot(layer0,self.weights0)</br>
 </code></pre>
 
 np.dot is matrix multiplication.  Multiply the matrix layer0 by self.weights0.  </br>
