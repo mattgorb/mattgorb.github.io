@@ -284,14 +284,13 @@ Important function.  Google it.   This is our nonlinearity function.  Notice it 
 
 The next line is indicating whether to add a bias node to the layer.  This is a column of 1's in your matrix.  Bias is good in every neural network, it is used for shifting your activation function to the left or right on the graph.  
 
-<a   href="https://stackoverflow.com/questions/2480650/role-of-bias-in-neural-networks">Great link</a>
+<a   href="https://stackoverflow.com/questions/2480650/role-of-bias-in-neural-networks">Great link</a></br>
 
 <h5>Dropout</h5>
 
 </br>
 The next line of code is similar to the above code, but it's computing the final output layer.  In other words, the model is guessing what the actual output values will be, which in this case is 0, 1, 1, 0.  
-<pre><code>
- layer2 = self.nonlin(np.dot(layer1,self.weights1))
+<pre><code>layer2 = self.nonlin(np.dot(layer1,self.weights1))
 </code></pre>
 Layer1 is a 4x2 matrix, and self.weights1 is a 2x1 matrix.  Multiply these together and get a 4x1 matrix.  Notice this is the same size as the output matrix.  Next we will compute the error and deltas and begin the fun stuff, backpropagation.     
 <h5>Backpropagation</h5>s
