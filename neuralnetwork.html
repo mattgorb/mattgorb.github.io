@@ -287,6 +287,8 @@ The next line is indicating whether to add a bias node to the layer.  This is a 
 <a   href="https://stackoverflow.com/questions/2480650/role-of-bias-in-neural-networks">Great link</a></br>
 
 <h5>Dropout</h5>
+<pre><code>layer1 *= np.random.binomial([np.ones((layer1.shape[0],layer1.shape[1]))],1-self.dropoutPercent)[0] * (1.0/(1-self.dropoutPercent))
+</code></pre>
 
 </br>
 The next line of code is similar to the above code, but it's computing the final output layer.  In other words, the model is guessing what the actual output values will be, which in this case is 0, 1, 1, 0.  
