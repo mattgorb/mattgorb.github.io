@@ -287,8 +287,11 @@ The next line is indicating whether to add a bias node to the layer.  This is a 
 <h5>Dropout</h5>
 <pre><code>layer1 *= np.random.binomial([np.ones((layer1.shape[0],layer1.shape[1]))],1-self.dropoutPercent)[0] 
 </code></pre>
-
+Dissecting this line of code- </br>
+np.ones((layer1.shape[0],layer1.shape[1]))] creates an array of 1's the same shape as layer1.  (4x2)
+np.random.binomial([np.ones((layer1.shape[0],layer1.shape[1]))],self.dropoutPercent)[0] writes out an array that has 1's with a rate of self.dropoutPercent. The other 1-self.dropoutPercent of the time they will be zero.  So a 4x2 array with a dropout rate of 50% will have roughly five zeroes.  
 </br>
+This is then used to multiple with the layer1.  So a certain percentage of the nodes in layer1 will be zero with dropout>0.  This is a form of regularization.  It prevents overfitting models with complex adaptions of the data by "dropping out" random nodes during each iteration.  It other words, it prevents the model from becoming too smart for its own good by shutting off random areas of itself at each turn.   
 The next line of code is similar to the above code, but it's computing the final output layer.  In other words, the model is guessing what the actual output values will be, which in this case is 0, 1, 1, 0.  
 <pre><code>layer2 = self.nonlin(np.dot(layer1,self.weights1))
 </code></pre>
