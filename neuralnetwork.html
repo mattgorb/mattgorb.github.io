@@ -329,11 +329,9 @@ We again do Hadamard, or "elementwise" multiplication to get the layer1_delta.  
 self.layer1_deltaPrev=self.layer1_delta
 </code></pre>
 Momentum and learning rate are applied in the same way they were for layer2_delta, and and layer1_deltaPrev is saved off as well.  </br></br>
-
-Now we update the weights of the network, which is what holds the "learned" information about the data:
-<pre><code>
-self.weights1 += layer1.T.dot(self.layer2_delta)
-</code></pre>
+<h5>Weight updates</h5>
+This is where the network "learns".  We update the weights of the network to more resemble the output data:
+<pre><code>self.weights1 += layer1.T.dot(self.layer2_delta)</code></pre>
 layer2_delta=(4x1) shaped matrix.</br>
 layer1=(4x2) shaped matrix -> Transposed=(2x4) shaped matrix.  </br>
 2x4 matrix * 4x1 matrix=2x1 matrix, or the weights1 shape.  We add these values to the randomized weights so that weights1 can update with numbers that will more accurately guess what the output will be next time it forward propogates.  
