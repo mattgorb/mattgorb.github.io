@@ -342,7 +342,7 @@ layer2_delta=(4x1) shaped matrix.</br>
 layer1=(4x2) shaped matrix -> Transposed=(2x4) shaped matrix.  </br>
 2x4 matrix * 4x1 matrix=2x1 matrix, or the weights1 shape.  We add these values to the randomized weights so that weights1 can update with numbers that will more accurately guess what the output will be next time it forward propogates.  
 </br></br>The math behind this works because of basic calculus. The derivative, or rate of change, is calculated  and this gives us the steepest route to take to get to the correct value of the function.  This is called gradient descent.  On top of this, we already know how far off we are by calculating the error.  If we are not far off from the correct value, we don't have to move far.  This is why we multiply the error by the derivative.
-</br>
+</br></br>From here just keep iterating through through the for loop until your weights update enough to guess the correct output values.  
 <p></p>
 </div>
 					      
