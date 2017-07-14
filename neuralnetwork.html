@@ -336,11 +336,19 @@ layer2_delta=(4x1) shaped matrix.</br>
 layer1=(4x2) shaped matrix -> Transposed=(2x4) shaped matrix.  </br>
 2x4 matrix * 4x1 matrix=2x1 matrix, or the weights1 shape.  We add these values to the randomized weights so that weights1 can update with numbers that will more accurately guess what the output will be next time it forward propogates.  
 
-self.weights0 += layer0.T.dot(self.layer1_delta)
+<pre><code>Example
+Say one of the nodes is .5 with a weight of -8, and another is .1 with a weight of 4, each going to a node at layer2=0.8
+We guessed layer2 at that node would be 0.6, or sig(node)=0.6.  Therefore sig'(node)=0.24
+l2_delta=error*sig'(node)=0.24*(0.8-0.6)=0.048
+-8+(0.048*.5)=-7.976
+4+(.1*.048)=4.0048
+These are our new weights.  Now, when 
 
-the differential calculus the network uses to correct itself and
+</code></pre>
+
+<p></p>
 </div>
-					      <p>Shuffle:  Randomly rearrange the data rows so that the network is fed new combinations of data on each iteration. </p>
+					      
 
 
 
