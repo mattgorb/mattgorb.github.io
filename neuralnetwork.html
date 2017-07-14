@@ -294,7 +294,7 @@ This is then used to multiple with the layer1.  So a certain percentage of the n
 <pre><code>layer2 = self.nonlin(np.dot(layer1,self.weights1))
 </code></pre>
 Layer1 is a 4x2 matrix, and self.weights1 is a 2x1 matrix.  Multiply these together and get a 4x1 matrix.  Then send them through the sigmoid function to map the values between 0 and 1. Notice this is the same size as the output matrix.  </br>Next I will compute the error and deltas and begin the fun stuff, backpropagation.  </br>   
-<h5>Backpropagation</h5>
+</br><h5>Backpropagation</h5>
 <pre><code>layer2_error = self.TrainingOut - layer2
 </code></pre>
 The self.TrainingOut matrix is the actual output values for the dataset, 0,1,1,0.  Layer2 is what the neural network guessed.  Subtracting layer2 from TrainingOut will tell the network how far off its guessed values are to the actual values.  
