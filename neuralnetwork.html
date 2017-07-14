@@ -301,12 +301,15 @@ The self.TrainingOut matrix is the actual output values for the dataset, 0,1,1,0
 
 <pre><code>self.layer2_delta = layer2_error*self.nonlin(layer2,deriv=True)*self.learningRate+self.momentum*self.layer2_deltaPrev
 </code></pre>
-The simple version of the delta, or the error weighted derivative, is layer2_error*self.nonlin(layer2,deriv=True).  You can see that this is taking the slope (derivative) for the weights and multiplying these by the layer2_error.  
-<div><img src="mlb pics/sigmoid_deriv.png" width="60%" height="5%"/></div>
+The simple version of the delta, or the error weighted derivative, is layer2_error*self.nonlin(layer2,deriv=True).  This is taking the slope (derivative) for the weights and multiplying these by the layer2_error.  </br>
+
+0.24*0.2=0.048
+<div><img src="mlb pics/sigmoid_deriv.png" width="75%" height="5%"/></div>
 
 </br></br>
 self.learningRate is the rate you want your network to update its weights.  It can be between 0 and 1 and the default is 1.  I think of the learning rate as the rate at which which you want your network to abandon its preconceived ideas about the data.  </br>I learned how important learning rate becomes when fine-tuning a pretrained network on new data.  Fine-tuning involves using a pre-existing model such as ResNet or Google's Inception that has weights based on a specific dataset, and training it on your own data.  When you attempt to train your data's new nodes with a high learning rate, the new nodes won't know anything about the data, and will proceed to update all of the pre-trained models learned weights.  This means that all the work the model did to learn its pretrained weights will be wiped out.  
-</br> I got slightly fancy and implemented momentum as well.  Momentum is the second part of the code in the line above:</br>
+</br>
+<h5>Momentum</h5>I got slightly fancy and implemented momentum as well.  Momentum is the second part of the code in the line above:</br>
 self.momentum*self.layer2_deltaPrev 
 </br>The momentum number is also between 0 and 1, and could be thought of as the velocity you want your neural network to learn with the memory of past velocities.  So, if you are going down the gradient, searching for the minimum (as in the picture below), you don't want to rapidly change directions at each step because some directions could lead to local minima.  Momentum smooths out the descent and pushes the network in the direction that most of the weights push it, rather than the current weight.   You do this by adding the weights from the previous iterations delta to the current iteration:</br>
 
@@ -315,6 +318,8 @@ self.momentum*self.layer2_deltaPrev
 self.layer2_deltaPrev=self.layer2_delta</br>From here it can use the variable layer2_deltaPrev for the next iteration.  </br></br>
 Note* Because layer2_error is a 4x1 matrix and layer2 is also a 4x1 matrix, we are taking the Hadamard product, which is multiplying the corresponding cell in each matrix with each other to produce a matrix of the same size.  
 The output of layer2_delta will be a 4x1 matrix.  </br></br>
+
+<h5>layer1 error and delta</h5>
 Next we calculate the layer1_error:
 <pre><code>layer1_error = self.layer2_delta.dot(self.weights1.T)
 </code></pre>
