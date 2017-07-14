@@ -325,8 +325,8 @@ self.layer2_deltaPrev=self.layer2_delta</br>From here it can use the variable la
 Note* Because layer2_error is a 4x1 matrix and layer2 is also a 4x1 matrix, we are taking the Hadamard product, which is multiplying the corresponding cell in each matrix with each other to produce a matrix of the same size.  
 The output of layer2_delta will be a 4x1 matrix.  </br></br>
 
-<h5>layer1 error and delta</h5>
-Next we calculate the layer1_error:
+<h5>Layer1 error and delta</h5>
+Calculate layer1_error:
 <pre><code>layer1_error = self.layer2_delta.dot(self.weights1.T)
 </code></pre>
 weights1 is a 2x1 matrix.  .T transposes the matrix to get a 1x2 matrix.  Therefore the output size for layer1_error is (4x1)*(1x2)=4x2 matrix.  Which is the size of the weights0 matrix.  </br>
@@ -341,7 +341,7 @@ This is where the network "learns".  We update the weights of the network to mor
 layer2_delta=(4x1) shaped matrix.</br>
 layer1=(4x2) shaped matrix -> Transposed=(2x4) shaped matrix.  </br>
 2x4 matrix * 4x1 matrix=2x1 matrix, or the weights1 shape.  We add these values to the randomized weights so that weights1 can update with numbers that will more accurately guess what the output will be next time it forward propogates.  
-</br>The math behind this works because of basic calculus. The derivative, or rate of change, is calculated  and this gives us the steepest route to take to get to the correct value of the function.  On top of this, we already know how far off we are by calculating the error.  If we are not far off from the correct value, we don't have to move far.  This is why we multiply the error by the derivative.
+</br></br>The math behind this works because of basic calculus. The derivative, or rate of change, is calculated  and this gives us the steepest route to take to get to the correct value of the function.  This is called gradient descent.  On top of this, we already know how far off we are by calculating the error.  If we are not far off from the correct value, we don't have to move far.  This is why we multiply the error by the derivative.
 </br>
 <p></p>
 </div>
