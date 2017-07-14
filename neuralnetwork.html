@@ -319,10 +319,7 @@ self.learningRate is the rate you want your network to update its weights.  It c
 </code></pre>
 </br>The momentum number is also between 0 and 1, and could be thought of as the velocity you want your neural network to learn with the memory of past velocities.  So, if you are going down the gradient, searching for the minimum (as in the picture below), you don't want to rapidly change directions at each step because some directions could lead to local minima.  Momentum smooths out the descent and pushes the network in the direction that most of the weights push it, rather than the current weight.   You do this by adding the weights from the previous iterations delta to the current iteration:</br>
 <pre><code>self.layer2_deltaPrev=self.layer2_delta
-</code></pre>
-
-
-</br>From here it can use the variable layer2_deltaPrev for the next iteration.  </br></br>
+</code></pre></br>
 
 <div><img src="mlb pics/gradientdescent.png" width="60%" height="5%"/></div>
 Note* Because layer2_error is a 4x1 matrix and layer2 is also a 4x1 matrix, we are taking the Hadamard product, which is multiplying the corresponding cell in each matrix with each other to produce a matrix of the same size.  
