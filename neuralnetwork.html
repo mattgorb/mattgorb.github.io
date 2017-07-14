@@ -262,13 +262,10 @@ We're ready to enter the Train() method from above.  We will iterate in the for 
 layer0 = self.TrainingIn.  Self explanatory.</br>
 Shuffle is rearranging the data into random rows.  </br>
 The next line of code is doing a lot: </br>
-<pre><code>    
-layer1 = self.nonlin(np.dot(layer0,self.weights0)</br>
-</code></pre>
-
+<pre><code>layer1 = self.nonlin(np.dot(layer0,self.weights0)</code></pre>
 np.dot is matrix multiplication.  Multiply the matrix layer0 by self.weights0.  </br>
-Remember back to linear algebra, these matrices have to be compatible sizes.  Since layer0 is  size 4x3 and weights0 is size 3x2, we can multiply these together to output a 4x2 matrix.  (For matrix multiplication the middle two numbers have to be the same)</br></br>
-The 4x2 layer1 matrix is illustrated in the picture at the top of the page as the circles in the middle depicting the "hidden layer".  The weights are depicted as the lines between the different layers of the  network.  
+</br>Remember back to linear algebra, these matrices have to be compatible sizes.  Since layer0 is  size 4x3 and weights0 is size 3x2, we can multiply these together to output a 4x2 matrix.  (For matrix multiplication the middle two numbers have to be the same)</br></br>
+The 4x2 layer1 matrix is illustrated in the picture at the top of the page as the circles in the middle depicting the "hidden layer", although its a different size than this example.  The weights are depicted as the lines between the different layers of the  network.  
 </br>
 Next the resulting 4x2 matrix gets sent through the function nonlin().  Code:
 
@@ -280,22 +277,23 @@ Next the resulting 4x2 matrix gets sent through the function nonlin().  Code:
 This is the sigmoid function.  1/(1+e^(-x)).</br>
 Important function.  Google it.   This is our nonlinearity function.  Notice it maps any value to a value between 0 and 1, a probabilistic scale.  Its derivative returns x*(1-x). We will use this when computing the gradient in a few steps. </br> </br>
 
+
 The next line is indicating whether to add a bias node to the layer.  This is a column of 1's in your matrix.  Bias is good in every neural network, it is used for shifting your activation function to the left or right on the graph.  
 
 <a   href="https://stackoverflow.com/questions/2480650/role-of-bias-in-neural-networks">Great link</a></br>
-
+</br>
 <h5>Dropout</h5>
 <pre><code>layer1 *= np.random.binomial([np.ones((layer1.shape[0],layer1.shape[1]))],1-self.dropoutPercent)[0] 
 </code></pre>
 Dissecting this line of code- </br>
 np.ones((layer1.shape[0],layer1.shape[1]))] creates an array of 1's the same shape as layer1.  (4x2)
 np.random.binomial([np.ones((layer1.shape[0],layer1.shape[1]))],self.dropoutPercent)[0] writes out an array that has 1's with a rate of self.dropoutPercent. The other 1-self.dropoutPercent of the time they will be zero.  So a 4x2 array with a dropout rate of 50% will have roughly five zeroes.  
-</br>
+</br></br>
 This is then used to multiple with the layer1.  So a certain percentage of the nodes in layer1 will be zero with dropout>0.  This is a form of regularization.  It prevents overfitting models with complex adaptions of the data by "dropping out" random nodes during each iteration.  It other words, it prevents the model from becoming too smart for its own good by shutting off random areas of itself at each turn.   
-The next line of code is similar to the above code, but it's computing the final output layer.  In other words, the model is guessing what the actual output values will be, which in this case is 0, 1, 1, 0.  
+</br></br>The next line of code is similar to the above code, but it's computing the final output layer.  In other words, the model is guessing what the actual output values will be, which in this case is 0, 1, 1, 0.  
 <pre><code>layer2 = self.nonlin(np.dot(layer1,self.weights1))
 </code></pre>
-Layer1 is a 4x2 matrix, and self.weights1 is a 2x1 matrix.  Multiply these together and get a 4x1 matrix.  Notice this is the same size as the output matrix.  Next we will compute the error and deltas and begin the fun stuff, backpropagation.     
+Layer1 is a 4x2 matrix, and self.weights1 is a 2x1 matrix.  Multiply these together and get a 4x1 matrix.  Then send them through the sigmoid function to map the values between 0 and 1. Notice this is the same size as the output matrix.  </br></br>Next we will compute the error and deltas and begin the fun stuff, backpropagation.     
 <h5>Backpropagation</h5>s
 <pre><code>layer2_error = self.TrainingOut - layer2
 </code></pre>
