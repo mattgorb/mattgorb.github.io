@@ -314,8 +314,9 @@ The simple version of the delta, or the error weighted derivative, is layer2_err
 </br></br>
 self.learningRate is the rate you want your network to update its weights.  It can be between 0 and 1 and the default is 1.  I think of the learning rate as the rate at which which you want your network to abandon its preconceived ideas about the data.  </br>I learned how important learning rate becomes when fine-tuning a pretrained network on new data.  Fine-tuning involves using a pre-existing model such as ResNet or Google's Inception that has weights based on a specific dataset, and training it on your own data.  When you attempt to train your data's new nodes with a high learning rate, the new nodes won't know anything about the data, and will proceed to update all of the pre-trained models learned weights.  This means that all the work the model did to learn its pretrained weights will be wiped out.  
 </br></br>
-<h5>Momentum</h5>I got slightly fancy and implemented momentum as well.  Momentum is the second part of the code in the line above:</br>
-self.momentum*self.layer2_deltaPrev 
+<h5>Momentum</h5>Momentum is the second part of the code in the line above:</br>
+<pre><code>self.momentum*self.layer2_deltaPrev 
+</code></pre>
 </br>The momentum number is also between 0 and 1, and could be thought of as the velocity you want your neural network to learn with the memory of past velocities.  So, if you are going down the gradient, searching for the minimum (as in the picture below), you don't want to rapidly change directions at each step because some directions could lead to local minima.  Momentum smooths out the descent and pushes the network in the direction that most of the weights push it, rather than the current weight.   You do this by adding the weights from the previous iterations delta to the current iteration:</br>
 
 <div><img src="mlb pics/gradientdescent.png" width="60%" height="5%"/></div>
