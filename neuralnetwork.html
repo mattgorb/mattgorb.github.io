@@ -233,7 +233,10 @@ Run({"hiddenDim":2,"learningRate":.05,"trainingIterations":5000,"momentum":.1,
 })	
 			</code></pre>
 					      
-		       <p>For now I'm going to skip over bias, minibatch training, stochastic gradient descent training, and N-fold cross validation.  I'll talk about these concepts later.  </p>
+<div>In the example I send the entire input matrix through the algorithm all at once.  This is known at "batch training".  </br>Mini-Batch involves using a subset of the input data greater than 1, and training and updating the network in this way.  </br>
+Stochastic training involves sending one input value through each training iteration, and updating the weights one input at a time.  </div>
+
+
 
 			
 			
@@ -337,17 +340,8 @@ This is where the network "learns".  We update the weights of the network to mor
 layer2_delta=(4x1) shaped matrix.</br>
 layer1=(4x2) shaped matrix -> Transposed=(2x4) shaped matrix.  </br>
 2x4 matrix * 4x1 matrix=2x1 matrix, or the weights1 shape.  We add these values to the randomized weights so that weights1 can update with numbers that will more accurately guess what the output will be next time it forward propogates.  
-
-<pre><code>Example
-Say one of the nodes is .5 with a weight of -8, and another is .1 with a weight of 4, each going to a node at layer2=0.8
-We guessed layer2 at that node would be 0.6, or sig(node)=0.6.  Therefore sig'(node)=0.24
-l2_delta=error*sig'(node)=0.24*(0.8-0.6)=0.048
--8+(0.048*.5)=-7.976
-4+(.1*.048)=4.0048
-These are our new weights.  Now, when 
-
-</code></pre>
-
+</br>The math behind this works because of basic calculus. The derivative, or rate of change, is calculated  and this gives us the steepest route to take to get to the correct value of the function.  On top of this, we already know how far off we are by calculating the error.  If we are not far off from the correct value, we don't have to move far.  This is why we multiply the error by the derivative.
+</br>
 <p></p>
 </div>
 					      
