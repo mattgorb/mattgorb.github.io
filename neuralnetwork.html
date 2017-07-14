@@ -293,8 +293,8 @@ This is then used to multiple with the layer1.  So a certain percentage of the n
 </br></br>The next line of code is similar to the above code, but it's computing the final output layer.  In other words, the model is guessing what the actual output values will be, which in this case is 0, 1, 1, 0.  
 <pre><code>layer2 = self.nonlin(np.dot(layer1,self.weights1))
 </code></pre>
-Layer1 is a 4x2 matrix, and self.weights1 is a 2x1 matrix.  Multiply these together and get a 4x1 matrix.  Then send them through the sigmoid function to map the values between 0 and 1. Notice this is the same size as the output matrix.  </br></br>Next we will compute the error and deltas and begin the fun stuff, backpropagation.     
-<h5>Backpropagation</h5>s
+Layer1 is a 4x2 matrix, and self.weights1 is a 2x1 matrix.  Multiply these together and get a 4x1 matrix.  Then send them through the sigmoid function to map the values between 0 and 1. Notice this is the same size as the output matrix.  </br>Next I will compute the error and deltas and begin the fun stuff, backpropagation.  </br>   
+<h5>Backpropagation</h5>
 <pre><code>layer2_error = self.TrainingOut - layer2
 </code></pre>
 The self.TrainingOut matrix is the actual output values for the dataset, 0,1,1,0.  Layer2 is what the neural network guessed.  Subtracting layer2 from TrainingOut will tell the network how far off its guessed values are to the actual values.  
@@ -302,6 +302,8 @@ The self.TrainingOut matrix is the actual output values for the dataset, 0,1,1,0
 <pre><code>self.layer2_delta = layer2_error*self.nonlin(layer2,deriv=True)*self.learningRate+self.momentum*self.layer2_deltaPrev
 </code></pre>
 The simple version of the delta, or the error weighted derivative, is layer2_error*self.nonlin(layer2,deriv=True).  You can see that this is taking the slope (derivative) for the weights and multiplying these by the layer2_error.  
+<div><img src="mlb pics/sigmoid_deriv.png" width="60%" height="5%"/></div>
+
 </br></br>
 self.learningRate is the rate you want your network to update its weights.  It can be between 0 and 1 and the default is 1.  I think of the learning rate as the rate at which which you want your network to abandon its preconceived ideas about the data.  </br>I learned how important learning rate becomes when fine-tuning a pretrained network on new data.  Fine-tuning involves using a pre-existing model such as ResNet or Google's Inception that has weights based on a specific dataset, and training it on your own data.  When you attempt to train your data's new nodes with a high learning rate, the new nodes won't know anything about the data, and will proceed to update all of the pre-trained models learned weights.  This means that all the work the model did to learn its pretrained weights will be wiped out.  
 </br> I got slightly fancy and implemented momentum as well.  Momentum is the second part of the code in the line above:</br>
