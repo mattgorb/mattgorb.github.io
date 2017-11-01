@@ -1,0 +1,159 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <!-- Basic Page Needs
+  ?????????????????????????????????????????????????? -->
+  <meta charset="utf-8">
+  <title>Matt Gorbett</title>
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <!-- Mobile Specific Metas
+  ?????????????????????????????????????????????????? -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- FONT
+  ?????????????????????????????????????????????????? -->
+ <link href='https://fonts.googleapis.com/css?family=Raleway:400,300,600'  rel='stylesheet' type='text/css'>
+
+  <!-- CSS
+  ?????????????????????????????????????????????????? -->
+  <link rel="stylesheet" href="css/normalize.css">
+  <link rel="stylesheet" href="css/skeleton.css">
+  <link rel="stylesheet" href="css/custom.css">
+
+  <!-- Scripts
+  ?????????????????????????????????????????????????? -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+  <script src="https://google-code-prettify.googlecode.com/svn/loader/run_prettify.js"></script>
+  <script src="js/site.js"></script>
+
+  <!-- Favicon
+  ?????????????????????????????????????????????????? -->
+  <link rel="icon" type="image/png" href="dist/images/favicon.png">
+
+
+
+
+
+<style>
+
+</style>
+
+
+
+
+
+
+</head>
+
+<body class="code-snippets-visible">
+
+  <!-- Primary Page Layout
+  ?????????????????????????????????????????????????? -->
+  <div class="container">
+
+
+    <div class="navbar-spacer"></div>
+   <nav class="navbar">
+      <div class="container">
+        <ul class="navbar-list">
+
+		<li class="navbar-item"><a class="navbar-link" href="index.html">Home</a></li>
+		<li class="navbar-item"><a class="navbar-link" href="electricvehicledetection.html">EV Detection</a></li>
+		<li class="navbar-item"><a class="navbar-link" href="dailymlblineups.html">MLB API</a></li>
+		<li class="navbar-item">
+			<a class="navbar-link" href="#" data-popover="#codeNavPopover">Basic ML</a>
+				<div id="codeNavPopover" class="popover">
+					<ul class="popover-list">
+						<li class="popover-item">
+							<a class="popover-link" href="neuralnetwork.html">Artificial Neural Network</a>
+						</li>
+						<li class="popover-item">
+							<a class="popover-link" href="nearestneighbor.html">Nearest Neighbors</a>
+						</li>
+					</ul>
+				</div>
+		</li>
+		
+		<li class="navbar-item">
+			<a class="navbar-link" href="#" data-popover="#codeNavPopover2">Computer Vision</a>
+				<div id="codeNavPopover2" class="popover">
+					<ul class="popover-list">
+						<li class="popover-item">
+							<a class="popover-link" href="https://github.com/mattgorb/Kaggle_Understanding-the-Amazon-from-Space">Amazon satellite imagery</a>
+						</li>
+						<li class="popover-item">
+							<a class="popover-link" href="https://github.com/mattgorb/CNN_CarsDataset">Cars</a>
+						</li>
+						<li class="popover-item">
+							<a class="popover-link" href="https://github.com/mattgorb/Kaggle-Carvana-Image-Segmentation">Carvana Image Segmentation</a>
+						</li>
+					</ul>
+				</div>
+		</li>
+		<li class="navbar-item"><a class="navbar-link" href="timeseries.html">Time Series pt. 1</a></li>
+        </ul>
+      </div>
+    </nav>
+
+ 
+ 
+	   
+			
+	<div class="container">
+<h5>FanDuel lineup generator</h5>
+
+
+ <form>
+	  <div class="row">
+	<label class="one columns">Position</label>
+   	<label class="three columns">Player</label>
+ 	<label class="two columns">Salary </label>
+ 	<label class="four columns">Average Points (optional)</label>
+ 	
+ 	 </div>
+    	
+    <div formGroupName="type">
+    <div formArrayName="options">
+      <div >
+        <div>
+
+	    <div class="row" style="padding:0.5%;">
+		<div class="one columns"  >		
+			<select formControlName="pos"  >
+			  <option>QB</option>
+ 			  <option>RB</option>
+ 			  <option>WR</option>
+ 			  <option>TE</option>
+ 			  <option>D</option>
+ 			  <option>K</option>
+			</select>
+		</div>
+   		<input class="three columns u-full-width form-control" id="name" style="height:38px;padding:6px 10px;border:1px solid #D1D1D1;border-radius:4px;margin-left:5%;" formControlName="name" >  
+			
+ 		<input class="two columns u-full-width" formControlName="salary"  type="salary" placeholder="7,000" id="exampleEmailInput"  style="height:38px;padding:6px 10px;border:1px solid #D1D1D1;border-radius:4px;margin-left:2.5%;">
+ 		<input class="two columns u-full-width" formControlName="average"  type="average" placeholder="15.2" id="exampleEmailInput"  style="height:38px;padding:6px 10px;border:1px solid #D1D1D1;border-radius:4px;margin-left:2.5%;">
+  	    </div>
+
+          </div>
+        </div>
+	<button type="button"  class="button">Add new Row</button>
+      </div>
+    </div>
+    <button class="button-primary" type="submit">Submit</button>
+    </form>
+</div>
+		      
+
+
+
+
+
+
+<!-- End Document
+  ?????????????????????????????????????????????????? -->
+</body>
+</html>
