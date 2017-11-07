@@ -124,7 +124,10 @@
 		FanDuel football lineups consist of 1 QB, 2 RB's, 3 WR's, 1 TE, 1 D, and 1 Kicker. Say I pick 2 QB's, 4 RB's, 5 WR's, 3 TE's, 2 Defenses, and 2 Kickers.  The number of unique combinations here is simple multiplication of binomial coefficients.  
 		<br>A binomial coefficient (n choose k) is the number of ways of picking k unordered outcomes from n possibilities, also known as a combination or combinatorial number.  
 		<br>For example, I picked 5 WR's.  Since there are three slots in the lineup for WR's, there are (5 choose 3) unique combinations.   Mathematically, this means there are (5*4*3)/(3*2*1)=10 unique combinations.  
-		</div>
+		<br><br>So in total, there are (2 choose 1)*(4 choose 2)*(5 choose 3)*(3 choose 1)*(2 choose 1)*(2 choose 1) combinations.  <br>
+			This equals (2)*(6)*(10)*(3)*(2)*(2)=1,440 lineup combinations.  
+		</div><br>
+		<div>Finally, Here is what the form looks like.  I included a column for average points of each player in case you want to choose your lineups based on total average points.  Winning combinations are usually in the 65th-75th percentile of average points.  </div>
  <form>
 	  <div class="row">
 		<label class="one columns" >Position</label>
