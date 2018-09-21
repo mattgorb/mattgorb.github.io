@@ -11952,9 +11952,9 @@ Average yaw error
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Transforming-sine-and-cosine-into-prediction-angle">Transforming sine and cosine into prediction angle<a class="anchor-link" href="#Transforming-sine-and-cosine-into-prediction-angle">&#182;</a></h3><p>To transform sine and cosine predictions back into actual angle predictions, it depends on the value of both sine and cosine.  The image below shows quadrant the prediction will fall into given the predicted sine and cosine values.  For example, if both sine and cosine are less than zero, the predicted angle will fall between 180 and 270 degrees.</p>
+<h3 id="Transforming-sine-and-cosine-into-prediction-angle">Transforming sine and cosine into prediction angle<a class="anchor-link" href="#Transforming-sine-and-cosine-into-prediction-angle">&#182;</a></h3><p>To transform sine and cosine predictions back into actual angle predictions, it depends on the value of both sine and cosine.  The image below shows the quadrant the prediction will fall into given the predicted sine and cosine values.  For example, if both sine and cosine are less than zero, the predicted angle will fall between 180 and 270 degrees.</p>
 <p><img src="quadrants.jpg" alt="Quadrants" title="Title"></p>
-<p>The below functions are helper functions for converting predictions back into a single angle prediction.  I use RMSE, Root Mean Squared Error, to find the erorr of both the sine and cosine models.  I weight the model in favor of the lowest error model.  For example, if the sine model has an error of 0.05, and the cosine error is .1, I weight the sine model with 2/3 and the cosine model with 1/3.</p>
+<p>The below functions are helper functions for converting predictions back into a single angle prediction.  I use RMSE, Root Mean Squared Error, to find the error of both the sine and cosine models.  I weight the model in favor of the lowest error model.  For example, if the sine model has an error of 0.05, and the cosine error is .1, I weight the sine model with 2/3 and the cosine model with 1/3.</p>
 
 </div>
 </div>
