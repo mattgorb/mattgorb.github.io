@@ -353,8 +353,7 @@ table,
 p,
 ul,
 ol,
-form {
-  margin-bottom: 2.5rem; }
+form {}
 
 
 /* Utilities
