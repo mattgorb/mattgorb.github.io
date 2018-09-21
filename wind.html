@@ -11853,7 +11853,7 @@ div#notebook {
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Wind Turbines have dozens of sensors that capture data on various environmental variables and on a turbine's working parts.  I came across a <a href="https://opendata-renewables.engie.com/explore/dataset/la-haute-borne-data-2013-2016/">public dataset</a> from the company Engie in France that presents data for four wind turbines from 2013-2016.  A few variables from the dataset include wind speed, wind direction, and nacelle angle.</p>
 <h3 id="The-Problem">The Problem<a class="anchor-link" href="#The-Problem">&#182;</a></h3><p>The body of a wind turbine, known as the nacelle, has sensors on it that provide information on the wind speed and wind direction.  This information is used for the wind turbine to turn, or "yaw", to face the wind to produce maximum power output.  However, the sensors are sometimes faulty and/or not calibrated correctly and give off bad information, causing the turbine to not be in alignment with the direction of the wind.  This is known as yaw error.  Being able to bring the yaw error closer to zero degrees would increase the power output of the wind turbine.  This could be done by implementing a prediction algorithm into a yawing controller.</p>
-<p>I'll be exploring whether wind direction can be predicted accurately based on historical data.  I'll be using the following tech stack to try and solve this as a time series machine learning problem:<br>
+<p>I'll be exploring whether wind direction can be predicted accurately based on historical data.  I'll be using the following tech stack to try and solve this as a time series machine learning problem:<br><br>
 Python 3.6: Pandas, NumPy <br>
 Sklearn <br>
 Keras (TensorFlow API) <br>
