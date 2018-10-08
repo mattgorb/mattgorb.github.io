@@ -13238,7 +13238,7 @@ div#notebook {
 
 <span class="k">def</span> <span class="nf">train_predict</span><span class="p">():</span>
         <span class="n">model</span> <span class="o">=</span> <span class="n">Sequential</span><span class="p">()</span>
-        <span class="n">model</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">CuDNNLSTM</span><span class="p">(</span><span class="mi">128</span><span class="o">*</span><span class="n">trainX_initial</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">*</span><span class="mi">2</span><span class="p">,</span> <span class="n">input_shape</span><span class="o">=</span><span class="p">(</span><span class="n">recordsBack</span><span class="p">,</span><span class="n">trainX_initial</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">2</span><span class="p">])))</span>
+        <span class="n">model</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">CuDNNLSTM</span><span class="p">(</span><span class="mi">128</span><span class="o">*</span><span class="n">trainX_initial</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o"></span><span class="mi"></span><span class="p">,</span> <span class="n">input_shape</span><span class="o">=</span><span class="p">(</span><span class="n">recordsBack</span><span class="p">,</span><span class="n">trainX_initial</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">2</span><span class="p">])))</span>
         <span class="n">model</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">Dense</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>
         <span class="n">model</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">loss</span><span class="o">=</span><span class="s1">&#39;mean_absolute_error&#39;</span><span class="p">,</span> <span class="n">optimizer</span><span class="o">=</span><span class="s1">&#39;adam&#39;</span><span class="p">)</span>
 
@@ -13514,10 +13514,10 @@ Average MAE multi variable LSTM: 4.46<br></p>
 <p>Average RMSE single variable LSTM: 7.66<br>
 Average RMSE multi variable LSTM: 6.54<br></p>
 <h4 id="Notes">Notes<a class="anchor-link" href="#Notes">&#182;</a></h4><ul>
-<li>For both MAE and RMSE, the multivariate LSTM performed better  </li>
+<li>For both MAE and RMSE the multivariate LSTM performed better  </li>
 <li>Training on the multivariate LSTM takes longer</li>
-<li>Optimization was performed with a smaller trainig dataset (10 days) because of the length of training.  Adding CuDNNLSTM helped, however, training was still very long for each day.  </li>
-<li>Both single and multi LSTM are significantly more computationally expensive than SVR </li>
+<li>Optimization was performed with a smaller training dataset (10 days) because of the length of training.  Adding CuDNNLSTM helped, however, training was still very long for each day.  </li>
+<li>Single and multivariate LSTM are more computationally expensive than SVR </li>
 	
 <li>	 <a href="https://github.com/mattgorb/WindDirection">Source code</a></li>
 </ul>
