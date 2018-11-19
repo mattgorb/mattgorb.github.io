@@ -128,7 +128,8 @@ border-bottom: 1px solid #eee;}
   .navbar-spacer {
     display: none; }
   .navbar > .container {
-    width: 100%; }
+    width: 100%;
+  border-bottom: 1px solid #eee;}
   .navbar-list {
     list-style: none;
     margin-bottom: 0; }
