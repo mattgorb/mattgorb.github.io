@@ -121,8 +121,7 @@ border-bottom: 1px solid #eee;}
     width: 100%;
     height: 6.5rem;
     background: #fff;
-    z-index: 99;
-    border-top: 1px solid #eee;}
+    z-index: 99;}
   .navbar-spacer {
     display: none; }
   .navbar > .container {
@@ -204,7 +203,6 @@ border-bottom: 1px solid #eee;}
     color: #222;
     display: block;
     padding: 8px 20px;
-    border-bottom: 1px solid #eee;
     text-decoration: none;
     text-transform: uppercase;
     font-size: 1.0rem;
