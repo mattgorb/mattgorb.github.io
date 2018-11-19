@@ -1,5 +1,6 @@
 .container {
-  max-width: 800px; }
+  max-width: 800px;
+border-bottom: 1px solid #eee;}
 .header {
   margin-top: 6rem;
   text-align: center; }
