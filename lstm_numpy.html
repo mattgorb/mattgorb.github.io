@@ -13186,9 +13186,9 @@ div#notebook {
 
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
+<div class="text_cell_render border-box-sizing rendered_html"><h1 id="LSTM-in--NumPy">LSTM in  NumPy<a class="anchor-link" href="#LSTM-in--NumPy">&#182;</a></h1>
 <p><img src="http://blog.varunajayasiri.com/ml/lstm.svg" alt="title"></p>
-<h1 id="LSTM-in--NumPy">LSTM in  NumPy<a class="anchor-link" href="#LSTM-in--NumPy">&#182;</a></h1><p>I wanted to understand the inner workings of an LSTM Recurrent Neural Network which led me to scour the internet for links.  The best link by far is <a href="http://colah.github.io/posts/2015-08-Understanding-LSTMs/">Christopher Olah's blog post</a>. I've been using LSTM's for awhile with Keras and TensorFlow, however these libraries don't help you understand the nuts and bolts of a Long Short Term RNN.</p>
+<p>I wanted to understand the inner workings of an LSTM Recurrent Neural Network which led me to scour the internet for links.  The best link by far is <a href="http://colah.github.io/posts/2015-08-Understanding-LSTMs/">Christopher Olah's blog post</a>. I've been using LSTM's for awhile with Keras and TensorFlow, however these libraries don't help you understand the nuts and bolts of a Long Short Term RNN.</p>
 <p>I attempted to implement the network in NumPy, but because of a lack of time I had to give up.  Instead, I found Nick Jimenez's python classes to be highly useful:
 NumPy taken from <a href="https://github.com/nicodjimenez">Nicolas D. Jimenez's GitHub</a>.</p>
 <p>I used 10 rows from my wind direction dataset and converted the wind direction to a sine wave.  I made a few adjustments to the network such as Adam optimization.  Below I walkthrough the network in English, mostly as an exercise for myself to understand the memory in backpropagation.</p>
