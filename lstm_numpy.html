@@ -13195,7 +13195,7 @@ NumPy taken from <a href="https://github.com/nicodjimenez">Nicolas D. Jimenez's 
 <h4 id="Adam-Optimization">Adam Optimization<a class="anchor-link" href="#Adam-Optimization">&#182;</a></h4><p>I implemented Adam optimization to the network rather than using SGD.  I used a GitHub page to help me write this, but I can't seem to find the link now.  Below I graphed a learning comparison of Adam vs SGD, both with a learning rate of 0.1.</p>
 <p>An interesting note on Adam optimization was that the network was only able to learn well with Adam optimization after initializing weights to <br>
 (np.random.rand(<em>args) </em> (.2) -.1)<em>.1<br>
-Very low weight initialization was required for the network to learn the data with Adam; Adam optimization only worked well after the "</em>.1" was added.  Adam optimization did however learn more effectively than SGD after this modification.  With Nick's original SGD weight initialization, the final loss on the network with this data was 0.18.  After adjusting the weight initialization, SGD loss was .26 and Adam loss was .0013.
+Very low weight initialization was required for the network to learn the data with Adam; Adam optimization only worked well after the "</em>.1" was added.  Adam optimization did however learn more effectively than SGD after this modification.  With the original SGD weight initialization, the final loss on the network with this data was 0.18.  After adjusting the weight initialization, SGD loss was .26 and Adam loss was .0013.
 Training SGD for more iterations would make up for its learning deficiencies compared to Adam.</p>
 
 </div>
