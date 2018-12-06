@@ -2,7 +2,7 @@
 <html>
 <head><meta charset="utf-8" />
 
-<title>Multi Armed Bandit</title>
+<title>Multi-Armed Bandit</title>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
@@ -9134,12 +9134,10 @@ model layouts accross multiple browsers, including older browsers.  The newest,
 universal implementation of the flexible box model is used when available (see
 `Modern browsers` comments below).  Browsers that are known to implement this 
 new spec completely include:
-
     Firefox 28.0+
     Chrome 29.0+
     Internet Explorer 11+ 
     Opera 17.0+
-
 Browsers not listed, including Safari, are supported via the styling under the
 `Old browsers` comments below.
 */
@@ -10491,8 +10489,6 @@ div.cell.selected.jupyter-soft-selected:before {
   }
 }
 .prompt {
-  /* This needs to be wide enough for 3 digit prompt numbers: In[100]: */
-  min-width: 14ex;
   /* This padding is tuned to match the padding on the CodeMirror editor. */
   padding: 0.4em;
   margin: 0px;
@@ -10711,10 +10707,8 @@ div.input_area > div.highlight > pre {
   }
 }
 /*
-
 Original style from softwaremaniacs.org (c) Ivan Sagalaev <Maniac@SoftwareManiacs.Org>
 Adapted from GitHub theme
-
 */
 .highlight-base {
   color: #000;
@@ -11434,8 +11428,6 @@ div#notebook {
     padding: 15px;
     background-color: #fff;
     min-height: 0;
-    -webkit-box-shadow: 0px 0px 12px 1px rgba(87, 87, 87, 0.2);
-    box-shadow: 0px 0px 12px 1px rgba(87, 87, 87, 0.2);
   }
 }
 @media print {
@@ -13052,9 +13044,7 @@ ul.typeahead-list  > li > a.pull-right {
 .ansi-white-bg { background-color: #C5C1B4; }
 .ansi-white-intense-fg { color: #A1A6B2; }
 .ansi-white-intense-bg { background-color: #A1A6B2; }
-
 .ansi-bold { font-weight: bold; }
-
     </style>
 
 
@@ -13062,9 +13052,7 @@ ul.typeahead-list  > li > a.pull-right {
 /* Overrides of notebook CSS for static HTML export */
 body {
   overflow: visible;
-  padding: 8px;
 }
-
 div#notebook {
   overflow: visible;
   border-top: none;
@@ -13084,8 +13072,18 @@ div#notebook {
 }
 </style>
 
+
+ <link href='https://fonts.googleapis.com/css?family=Raleway:400,300,600'  rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="css/normalize.css">
+  <link rel="stylesheet" href="css/skeleton.css">
+  <link rel="stylesheet" href="css/custom.css">
+	
+	
+	  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+  <script src="https://google-code-prettify.googlecode.com/svn/loader/run_prettify.js"></script>
+  <script src="js/site.js"></script>
+
 <!-- Custom stylesheet, it must be in the same directory as the html file -->
-<link rel="stylesheet" href="custom.css">
 
 <!-- Loading mathjax macro -->
 <!-- Load mathjax -->
