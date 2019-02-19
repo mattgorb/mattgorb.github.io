@@ -151,42 +151,38 @@
 
 <body class="code-snippets-visible">
 
-  <!-- Primary Page Layout
-  �������������������������������������������������� -->
+  <div class="container">
+
+
+    <div class="navbar-spacer"></div>
+    <nav class="navbar">
       <div class="container">
         <ul class="navbar-list">
 
-		<li class="navbar-item"><a class="navbar-link" href="index.html">Home</a></li>
 		<li class="navbar-item"><a class="navbar-link" href="https://mattgorb.github.io">Home</a></li>
 		<li class="navbar-item">
 			<a class="navbar-link" href="#" data-popover="#codeNavPopover">ML Projects</a>
 				<div id="codeNavPopover" class="popover">
+					<ul class="popover-list">
 						<li class="popover-item">
 							<a class="popover-link" href="Pruning">RL Ensembling</a>
 						</li>	
-
+						<li class="popover-item">
+							<a class="popover-link" href="wind">Wind Direction Prediction</a>
+						</li>
+												<li class="popover-item">
+							<a class="popover-link" href="wind_multivariatelstm">Wind Direction Prediction-Multivariate LSTM</a>
+						</li>
 						<li class="popover-item">
 							<a class="popover-link" href="electricvehicledetection">EV Detection</a>
 						</li>
-					</ul>
-				</div>
-		</li>		
-		<li class="navbar-item">
-			<a class="navbar-link" href="#" data-popover="#codeNavPopover2">WebDev</a>
-				<div id="codeNavPopover2" class="popover">
-					<ul class="popover-list">
 						<li class="popover-item">
-							<a class="popover-link" href="lineupgenerator">Lineup Generator</a>
-						</li>
-						<li class="popover-item">
-							<a class="popover-link" href="dailymlblineups">MLB API</a>
 							<a class="popover-link" href="timeseries">FBProphet Forecasting</a>
 						</li>
 					</ul>
 				</div>
-		</li>
 		</li>	
-
+		
 		<li class="navbar-item">
 			<a class="navbar-link" href="#" data-popover="#codeNavPopover3">Custom ML</a>
 				<div id="codeNavPopover3" class="popover">
@@ -202,9 +198,6 @@
 						</li>
 						<li class="popover-item">
 							<a class="popover-link" href="nearestneighbor">Nearest Neighbors</a>
-						</li>
-												<li class="popover-item">
-							<a class="popover-link" href="timeseries">FBProphet Forecasting</a>
 						<li class="popover-item">
 							<a class="popover-link" href="https://github.com/mattgorb/NBA_FanDuel_ML">SkLearn regressors and svm</a>
 						</li>
@@ -213,14 +206,24 @@
 		</li>
 
 
-
+		
 		<li class="navbar-item">
 			<a class="navbar-link" href="#" data-popover="#codeNavPopover4">Computer Vision</a>
+				<div id="codeNavPopover4" class="popover">
+					<ul class="popover-list">
+						<li class="popover-item">
+							<a class="popover-link" href="https://github.com/mattgorb/Kaggle_Understanding-the-Amazon-from-Space">Amazon satellite imagery</a>
+						</li>
+						<li class="popover-item">
+							<a class="popover-link" href="https://github.com/mattgorb/CNN_CarsDataset">Cars</a>
+						</li>
+						<li class="popover-item">
+							<a class="popover-link" href="https://github.com/mattgorb/Kaggle-Carvana-Image-Segmentation">Carvana Image Segmentation</a>
+						</li>
 					</ul>
 				</div>
 		</li>
-		<li class="navbar-item"><a class="navbar-link" href="about">Outside</a></li>
-
+		
 		<li class="navbar-item">
 			<a class="navbar-link" href="#" data-popover="#codeNavPopover2">WebDev</a>
 				<div id="codeNavPopover2" class="popover">
@@ -234,8 +237,8 @@
 					</ul>
 				</div>
 		</li>
-
-
+		
+		
 		<li class="navbar-item"><a class="navbar-link" href="outside">Outside</a></li>
         </ul>
       </div>
