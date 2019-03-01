@@ -11958,7 +11958,7 @@ div#notebook {
 <li>Calculate the absolute loss: absolute_value(actual[i]-prediction[i])</li>
 <li>Calculate the "reward": 1-absolute_value(loss).  Since data is scaled between -1 and 1, this works. </li>
 <li>"Stretch" the values: (1-absolute_value(loss))^gamma.<br>
-For me, gamma was 20.  My methodology was to take the average validation data loss of each model and calculate gamma for (1-loss)^gamma=0.5.  This way the network would retain an even output space across the scaled data spectrum.  </li>
+For me, gamma was 20.  My methodology was to take the average validation data loss of each model and calculate gamma for (1-loss)^gamma=0.5.  This way the network would retain an even output space across 0-1.  </li>
 <li>Add this data into the training sample.  </li>
 <li>For each new prediction randomly sample training data, similar to a Deep-Q network, and train.  From here, make a prediction about the new data.  </li>
 <li>Add new data to pool of training data to sample.  </li>
