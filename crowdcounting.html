@@ -11887,7 +11887,7 @@ The Sparsely Gated Mixture of Experts Layer</a></li>
 <ol>
 <li>Pretrained 8 models to specialize in a single head count range such as 50 people to 150 people or 900 people to 2000 people.  Trained final model with these loaded pretrained weights and a gating network to minimize loss on the consensus of models.  I believe the bottleneck here was a limited amount of training pictures.  Training one sub model only had around 40 pictures.  </li>
 </ol>
-<h3 id="Density-generation-code">Density generation code<a class="anchor-link" href="#Density-generation-code">&#182;</a></h3><p>I found this code on GitHub to generate density maps for the crowd counting output.   This computes a distance to your nearest neighbors to fill in an estimate of a density map using a gaussian filter. 
+<h3 id="Density-generation-code">Density generation code<a class="anchor-link" href="#Density-generation-code">&#182;</a></h3><p>I found the code on GitHub to generate density maps for the crowd counting output.   This computes a distance to your nearest neighbors to fill in an estimate of a density map using a gaussian filter. 
 <a href="https://github.com/leeyeehoo/CSRNet-pytorch/blob/master/make_dataset.ipynb">Thanks GitHub user leeyeehoo for providing this library</a></p>
 <h1 id="Pytorch-model">Pytorch model<a class="anchor-link" href="#Pytorch-model">&#182;</a></h1><p>Below is one of the models I used for training.  This gave me an error on par with SOA models.  However, I wasn't able to do better before overfitting occured.  I decided to end my analysis here.  All models were trained on ShanghaiTech Part A.</p>
 
