@@ -55,111 +55,13 @@
   <div class="container">
 
 
-   <div class="navbar-spacer"></div>
-    <nav class="navbar">
-      <div class="container">
-        <ul class="navbar-list">
-
-		<li class="navbar-item"><a class="navbar-link" href="https://mattgorb.github.io">Home</a></li>
-		<li class="navbar-item">
-			<a class="navbar-link" href="#" data-popover="#codeNavPopover">ML Projects</a>
-				<div id="codeNavPopover" class="popover">
-					<ul class="popover-list">
-												<li class="popover-item">										<li class="popover-item">
-							<a class="popover-link" href="regression_ensembles">Regression Ensembles</a>
-						</li>	
-												<li class="popover-item">
-							<a class="popover-link" href="moe">Mixtures of Experts</a>
-						</li>
-						<li class="popover-item">
-							<a class="popover-link" href="Pruning">RL Ensembling</a>
-						</li>	
-						<li class="popover-item">
-							<a class="popover-link" href="wind">Wind Direction Prediction</a>
-						</li>
-												<li class="popover-item">
-							<a class="popover-link" href="wind_multivariatelstm">Wind Direction Prediction-Multivariate LSTM</a>
-						</li>
-						<li class="popover-item">
-							<a class="popover-link" href="electricvehicledetection">EV Detection</a>
-						</li>
-						<li class="popover-item">
-							<a class="popover-link" href="timeseries">FBProphet Forecasting</a>
-						</li>
-					</ul>
-				</div>
-		</li>	
-
-		<li class="navbar-item">
-			<a class="navbar-link" href="#" data-popover="#codeNavPopover3">Custom ML</a>
-				<div id="codeNavPopover3" class="popover">
-					<ul class="popover-list">
-						<li class="popover-item">
-							<a class="popover-link" href="lstm_numpy">LSTM in NumPy</a>
-						</li>
-						<li class="popover-item">
-							<a class="popover-link" href="mab">Reinforcement Learning</a>
-						</li>
-						<li class="popover-item">
-							<a class="popover-link" href="neuralnetwork">Artificial Neural Network</a>
-						</li>
-						<li class="popover-item">
-							<a class="popover-link" href="nearestneighbor">Nearest Neighbors</a>
-						<li class="popover-item">
-							<a class="popover-link" href="https://github.com/mattgorb/NBA_FanDuel_ML">SkLearn regressors and svm</a>
-						</li>
-					</ul>
-				</div>
-		</li>
-
-
-
-		<li class="navbar-item">
-			<a class="navbar-link" href="#" data-popover="#codeNavPopover4">Computer Vision</a>
-				<div id="codeNavPopover4" class="popover">
-					<ul class="popover-list">
-						<li class="popover-item">
-							<a class="popover-link" href="crowdcounting">Crowd Counting</a>
-						</li>
-						<li class="popover-item">
-							<a class="popover-link" href="https://github.com/mattgorb/Kaggle_Understanding-the-Amazon-from-Space">Amazon satellite imagery</a>
-						</li>
-						<li class="popover-item">
-							<a class="popover-link" href="https://github.com/mattgorb/CNN_CarsDataset">Cars</a>
-						</li>
-						<li class="popover-item">
-							<a class="popover-link" href="https://github.com/mattgorb/Kaggle-Carvana-Image-Segmentation">Carvana Image Segmentation</a>
-						</li>
-					</ul>
-				</div>
-		</li>
-
-		<li class="navbar-item">
-			<a class="navbar-link" href="#" data-popover="#codeNavPopover2">WebDev</a>
-				<div id="codeNavPopover2" class="popover">
-					<ul class="popover-list">
-						<li class="popover-item">
-							<a class="popover-link" href="lineupgenerator">Lineup Generator</a>
-						</li>
-						<li class="popover-item">
-							<a class="popover-link" href="dailymlblineups">MLB API</a>
-						</li>
-					</ul>
-				</div>
-		</li>
-
-
-		<li class="navbar-item"><a class="navbar-link" href="outside">Outside</a></li>
-        </ul>
-      </div>
-    </nav>
 
  
           <!-- Why use-->
           <!--<div class="docs-section" style="padding-top: 6rem;padding-bottom: 3rem;" id="intro">-->
 		                	  <br><br>
 	  
-	  	  	  	  <h5>Crowd Counting</h5>
+	  	  	  	  
 	  		<p>Computer Vision has recently moved into regression with Crowd Counting datasets that attempt to model the density of people in a photo.  My model stacked dilated convolutional layers on top 
 				of a pretrained VGGNet with a separate sparse attention mechanism that learned different groupings of outputs from the convolutions.   </p>
 	  	  	<ul>
@@ -167,86 +69,7 @@
 
 							</ul><br>  
 	  
-	  	  	  <h5>Diverse Ensembles</h5>
-	  		<p>Regression analysis using Negative Correlation Learning, Mixtures of Experts, and Sparsely Gated Mixtures of Experts Ensembling with comparisons of different configurations.</p>
-	  	  	<ul>
-				<li><a   href="https://mattgorb.github.io/regression_ensembles">Comparison of Regression Ensembles</a></li> 
-
-							</ul><br>  
-	  
-	  	  <h5>Mixtures of Experts</h5>
-	  		<p> A few experiments on mixtures of experts ensembling, including sparse gating and multiple gating.</p>
-	  	  	<ul>
-				<li><a   href="https://mattgorb.github.io/moe">Mixtures of Experts</a></li> 
-
-							</ul><br>  
-	  
-	  
-	  <h5>Reinforcement Learning for Regression Ensemble Pruning</h5>
-	  		<p> A technique for selecting models from an ensemble using a stretched reward Q network. </p>
-	  	  	<ul>
-				<li><a   href="https://mattgorb.github.io/Pruning">Financial Time Series Ensembling using a Q Network</a></li> 
-
-							</ul><br>  
-	  
-	  <h5>Circular Time Series Forecasting</h5>
-	  		<p> Wind Turbines have dozens of sensors that capture data on various environmental and machine component variables. I came across a public dataset from the company Engie in France that presents data for four wind turbines from 2013-2016. I explored Time Series Forecasting on wind direction using Support Vector Regression and single and multivariate LSTM Recurrent Neural Network modeling. </p>
-	  	  	<ul>
-				<li><a   href="https://mattgorb.github.io/wind_multivariatelstm">Wind Direction Prediction-Multivariate LSTM</a></li> 
-
-			<li><a   href="https://mattgorb.github.io/wind">Wind Direction Prediction</a></li> 
-							</ul><br>  	  	
-	  
-	  <h5>LSTM in NumPy</h5>
-	  		<p>I wanted to understand the inner workings of an LSTM Recurrent Neural Network so I implemented a simple regression problem with Adam optimization.  
-		  	  	<ul>
-				<li><a   href="lstm_numpy">LSTM RNN with Regression</a></li> 
-			</ul>  <br>
-	  
-	  
-	  <h5>Reinforcement Learning</h5>
-	  <p>Simple and fun algorithms including epsilon greedy, thompson sampling, and ucb sampling for a Bernoulli bandit.  </p>
-		  	  	<ul>
-				<li><a   href="https://mattgorb.github.io/mab">Multi Armed Bandit Problem</a></li> 
-			</ul>  <br>
-	  
-	  
-
-
-	  
-	  		<h5>Ensemble Modeling</h5>
-	  		<p>I found this dataset while looking up Colorado based ML companies and was immediately intrigued.  The dataset features 1590 houses with 2880 time intervals. Thirty percent of houses have electric vehicles and you have to predict which time intervals they are charging them. Not enough data was provided for me to be comfortable with my results, but it was a fun exercise nonetheless.<a   href="https://github.com/mattgorb/ElectricVehicleDetection">  Source code</a></p>
-	  	  	<ul>
-			<li><a   href="https://mattgorb.github.io/electricvehicledetection">Electric Vehicle Detection</a></li> 
-			</ul>  
-		  <h5>Convolutional neural networks </h5>
-	  <p>These projects were my first foray into deep learning.  I ended up spending a grand over several months running AWS compute spot instaces, and it was a grand well spent.  Deep learning is fun, especially with datasets already provided :).  </p>
-	  		<ul>
-			<li><a   href="https://github.com/mattgorb/Kaggle_Understanding-the-Amazon-from-Space">Multi-label image classification of Amazon satellite imagery</a></li>
-			<li><a   href="https://github.com/mattgorb/CNN_CarsDataset">Classifying 200 cars using Google's Inception (version 3) model</a></li>
-				</br>
-		<h5>Custom implementations</h5><p>I wrote these a few years back before I knew anything. I was attempting to build statistical models to gamble on fantasy baseball and I wrote these models from scratch. It turned out to be way too many hours programming for very little results, but I felt like I learned the mathematical backbones behind these algorithms.</p>
-				  		<ul>
-			<li><a   href="https://mattgorb.github.io/neuralnetwork">Artificial Neural Network</a></li>
-			<li><a   href="https://mattgorb.github.io/nearestneighbor">K Nearest Neighbors</a></li>
-			</ul>
-			</ul>
-	  <h5>UNet for image segmentation</h5><p>A kaggle competition for segmenting pictures of cars for a company named Carvana.  Everyone did really well in this competition, so my dice coefficient score of 99.4 wasn't that impressive.  </p>  <ul>
-	  		<li><a   href="https://github.com/mattgorb/Kaggle-Carvana-Image-Segmentation">Car Image Segmentation</a></li>
-	  		</ul>
-	  	  <h5>Sklearn regressors and svm</h5><p>The purpose of this small project was to get my feet wet with different sklearn algorithms.  I used NBA fantasy data and generated more than 50 variables to send through Ridge Regression, ElasticNet, Random Forest Regressor, Gradient Boosting Regressor, and SVM algorithms.  </p>  <ul>
-	  		<li><a   href="https://github.com/mattgorb/NBA_FanDuel_ML">SKLearn machine learning</a></li>
-	  		</ul>
-	  	  <h5>Web development</h5>
-	  	  		<ul>
-			<li><a   href="https://mattgorb.github.io/dailymlblineups">Baseball daily lineups API and web page</a></li>
-			<li><a   href="https://mattgorb.github.io/lineupgenerator">FanDuel football lineup generator</a></li>
-			</ul>
-
-	  <h5>Time series analysis</h5>
-			  <ul>
-			  	<li><a   href="https://mattgorb.github.io/timeseries">Time Series Analysis of ~148,000 wikipedia sites</a></li>
-			  </ul>
+	  	  	
 
 	  <h5>About me</h5>
 			  <ul>
